@@ -70,17 +70,17 @@ class Header extends Component {
                         </Collapse>
                         <Nav className="md-mx-auto">
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home">
+                                    <NavLink className="nav-link nav-buttons" to="/home">
                                         <span className="fa fa-shopping-bag fa-lg" />
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/settings">
+                                    <NavLink className="nav-link nav-buttons" to="/settings">
                                         <span className="fa fa-user fa-lg" />
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/newpost">
+                                    <NavLink className="nav-link nav-buttons" to="/newpost">
                                         <span className="fa fa-plus-square-o fa-lg" />
                                     </NavLink>
                                 </NavItem>

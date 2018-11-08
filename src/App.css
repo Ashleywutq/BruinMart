@@ -78,3 +78,7 @@ address{
 .logo-div {
   padding-bottom: 10%;
 }
+
+.nav-buttons {
+  color: lightgray;
+}
