@@ -80,7 +80,7 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/settings">
+                                    <NavLink className="nav-link" to="/newpost">
                                         <span className="fa fa-plus-square-o fa-lg" />
                                     </NavLink>
                                 </NavItem>
