@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -29,4 +29,52 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+
+.row-header{
+  margin: auto;
+  padding: auto;
+}
+
+.row-content {
+  margin: auto;
+  padding: auto;
+  border-bottom: 1px ridge;
+  min-height:400px;
+}
+
+.footer{
+  margin: auto;
+  padding: 20px 0px 20px 0px;
+}
+.jumbotron {
+  padding:100px 30px 100px 30px;
+  margin: auto;
+  background-color: white;
+}
+
+address{
+  font-size:80%;
+  color:#0f0f0f;
+}
+
+.navbar-dark {
+  background-color: darkslateblue;
+}
+
+.login-div {
+  width: 500px;
+  height: 500px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
+
+.logo-div {
+  padding-bottom: 10%;
 }
