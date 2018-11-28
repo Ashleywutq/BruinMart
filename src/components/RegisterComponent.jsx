@@ -60,6 +60,18 @@ class Register extends React.Component {
                   innerRef={input => (this.password = input)}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label htmlFor="email">email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  innerRef={input => (this.password = input)}
+                />
+              </FormGroup>             
+
+
+
               <FormGroup check>
                 <Label check>
                   <Input
