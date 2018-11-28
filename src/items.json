@@ -1,0 +1,18 @@
+[
+  {
+    "name": "desk",
+    "picture": "../public/assets/images/1-finaldesk.jpg",
+    "reserved": "false",
+    "seller": "Joe Bruin",
+    "time": "23:00/26/11/2018",
+    "detail": "no more information provided"
+  },
+  {
+    "name": "Math 115A textbook",
+    "picture": "../public/assets/images/Math115ATextBook.jpg",
+    "reserved": "false",
+    "seller": "Joecy Bruin",
+    "time": "23:05/26/11/2018",
+    "detail": "no more information provided"
+  }
+]
