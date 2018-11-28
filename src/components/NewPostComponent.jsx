@@ -20,16 +20,14 @@ class ModalExample extends React.Component {
   render() {
     return (
       <div>
-        <Button color="danger" onClick={this.toggle}>Reserve</Button>
+        <Button outline onClick={this.toggle}><span className="fa fa-plus fa-lg" /></Button>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Reserve Item</ModalHeader>
           <ModalBody>
-            You are about to reserve the item "{this.props.item.name}" from {this.props.item.seller}.<br />
-            Are you sure?<br /> <br />
-            You will be able to check the seller's information and continue with the 
+              You are about to make a new post.
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Confirm</Button>{' '}
+            <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>

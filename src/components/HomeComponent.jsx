@@ -1,28 +1,45 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, CardDeck, CardSubtitle, CardLink, Button, Row } from 'reactstrap';
+import ReserveModal from "./ReserveModalComponent";
+import SaveModal from "./SaveModalComponent";
 import { RenderItem } from './ItemDetailComponent';
 
 function RenderCard({ item }) {
+    if (item == null) {
+        return (
+            <Card>
+                <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                <CardBody>
+                    <CardTitle>Item Name</CardTitle>
+                    <CardSubtitle>Posted by Joe Bruin on 26/11/2018</CardSubtitle>
+                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                    <div class="row">
+                        <div class="col-sm">
+                        <ReserveModal />
+                        </div>
+                        <div class="col-sm">
+                        <SaveModal />
+                        </div>
+                    </div>
+                </CardBody>
+            </Card>
+        );
+    }
     return (
         <Card>
-            <CardImg
-                top
-                width="100%"
-                src={item.picture}
-                alt={item.name}
-            />
+            <CardImg top width="100%" src={item.picture} alt={item.name} />
             <CardBody>
                 <CardTitle>{item.name}</CardTitle>
-                {/* <CardSubtitle></CardSubtitle> */}
-                <CardText>
-                    <b>Seller:</b> {item.seller}
-                    <br/>
-                    <b>More details:</b> {item.detail}
-                </CardText>
-                <Row>{/* <ReserveModal /> {' '} <SaveModal /> */}</Row>
-                <CardLink href="#" className="float-right">
-                    More Info
-                </CardLink>
+                <CardSubtitle>Posted by {item.seller} on {item.time}</CardSubtitle>
+                <CardText>{item.detail}</CardText>
+                    <div class="row">
+                        <div class="col-sm">
+                        <ReserveModal item={item}/>
+                        </div>
+                        <div class="col-sm">
+                        <SaveModal item={item}/>
+                        </div>
+                    </div>
             </CardBody>
         </Card>
     );

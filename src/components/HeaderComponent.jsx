@@ -22,6 +22,8 @@ import Register from "./RegisterComponent";
 import { NavLink } from "react-router-dom";
 import Avatar from "react-avatar";
 import SearchComponent from "./SearchComponent";
+import NewPostModal from './NewPostComponent';
+
 
 class Header extends Component {
   constructor(props) {
@@ -120,6 +122,11 @@ class Header extends Component {
             </Nav>
             <Nav>
               <div class="row">
+                <div class="col-sm">
+                  <NavItem>
+                      <NewPostModal />
+                  </NavItem>
+                </div>
                 <div class="col-sm">
                   <NavItem>
                     <Register />
