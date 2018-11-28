@@ -19,9 +19,9 @@ import {
 
 import Login from "./LoginComponent";
 import Register from "./RegisterComponent";
-
 import { NavLink } from "react-router-dom";
 import Avatar from "react-avatar";
+import SearchComponent from "./SearchComponent";
 
 class Header extends Component {
   constructor(props) {
@@ -113,7 +113,11 @@ class Header extends Component {
                 </NavItem>
               </Nav>
             </Collapse>
-
+            <Nav className="ml-auto col-8 col-sm-8" navbar>
+              <NavItem>
+                <SearchComponent />
+              </NavItem>
+            </Nav>
             <Nav>
               <div class="row">
                 <div class="col-sm">
