@@ -6,7 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterResults } from "../redux/ActionCreators";
+import { filterResults, fetchItems } from '../redux/ActionCreators';
 
 const mapStateToProps = (state) => {
     return {
@@ -16,20 +16,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    filterResults: (searchText) => dispatch(filterResults(searchText))
-    // postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
-    // fetchDishes: () => {
-    //     dispatch(fetchDishes());
-    // },
-    // fetchComments: () => {
-    //     dispatch(fetchComments());
-    // },
-    // fetchPromos: () => {
-    //     dispatch(fetchPromos());
-    // },
-    // resetFeedbackForm: () => {
-    //     dispatch(actions.reset('feedback'));
-    // }
+    filterResults: (searchText) => {
+        dispatch(filterResults(searchText));
+    },
+    fetchItems: () => {
+        dispatch(fetchItems());
+    }
 });
 
 class Main extends Component {
@@ -42,6 +34,10 @@ class Main extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        this.props.fetchItems();
+    }
+
     handleSubmit(event) {
         this.setState({
             loggedIn: true
@@ -51,12 +47,16 @@ class Main extends Component {
 
     render() {
         const HomePage = () => {
-            return <Home sellItems={this.props.sellItems} />;
+            return <Home sellItems={this.props.sellItems.sellItems} />;
         };
 
         return (
             <div>
-                <Header users={this.props.users} filterResults={this.props.filterResults} />
+                <Header
+                    users={this.props.users}
+                    filterResults={this.props.filterResults}
+                    fetchItems={this.props.fetchItems}
+                />
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Redirect to="/" />

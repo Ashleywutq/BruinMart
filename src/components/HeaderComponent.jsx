@@ -117,7 +117,7 @@ class Header extends Component {
             </Collapse>
             <Nav className="ml-auto col-6 col-sm-6" navbar>
               <NavItem>
-                <SearchComponent filterResults={this.props.filterResults} />
+                <SearchComponent filterResults={this.props.filterResults} fetchItems={this.props.fetchItems} />
               </NavItem>
             </Nav>
             <Nav>
