@@ -1,9 +1,7 @@
 import React from 'react';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle,CardLink, Button, Row } from 'reactstrap';
-import Popup from "reactjs-popup";
 import { RenderItem } from './ItemDetailComponent';
-import PropTypes from 'prop-types';
 
 
 function RenderCard({ item }) {
