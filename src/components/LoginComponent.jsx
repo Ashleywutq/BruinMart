@@ -31,7 +31,7 @@ class Login extends React.Component {
   render() {
     return (
       <div>
-        <Button outline onClick={this.toggle}>
+        <Button style={{ background: "transparent" }} onClick={this.toggle}>
           <span className="fa fa-sign-in fa-lg" /> Login
         </Button>
         <Modal

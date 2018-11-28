@@ -31,7 +31,7 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-        <Button outline onClick={this.toggle}>
+        <Button onClick={this.toggle} style={{ background: "transparent" }}>
           <span className="fa fa-sign-in fa-lg" /> Register
         </Button>
         <Modal
@@ -68,9 +68,7 @@ class Register extends React.Component {
                   name="email"
                   innerRef={input => (this.password = input)}
                 />
-              </FormGroup>             
-
-
+              </FormGroup>
 
               <FormGroup check>
                 <Label check>
