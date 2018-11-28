@@ -1,21 +1,46 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle,CardLink, Button, Row, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
+import ReserveModal from "./ReserveModalComponent";
+import SaveModal from "./SaveModalComponent";
 
-function RenderItem({selectedItem}) {
+
+export const RenderItem = ({selectedItem}) => {
+    if (selectedItem==null){
+        return (
+            <div className="col-12 col-md-5 m-1">
+                <Card>
+                    <CardImg top width="100%" src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180" alt="Card image cap" />
+                    <CardBody>
+                    <CardTitle>Item Name</CardTitle>
+                    <CardSubtitle>Posted by Joe Bruin on 26/11/2018</CardSubtitle>
+                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                    <Row>
+                    <ReserveModal /> {' '} <SaveModal />
+                    </Row>
+                    </CardBody>
+                </Card>
+             </div>
+         );
+    }
     return (
         <div className="col-12 col-md-5 m-1">
             <Card>
-                <CardImg width="100%" src={selectedItem.image} alt={selectedItem.name} />
+                <CardImg width="100%" src={selectedItem.picture} alt={selectedItem.name} />
                 <CardBody>
                     <CardTitle>{selectedItem.name}</CardTitle>
-                    <CardText>{selectedItem.description}</CardText>
+                    <CardSubtitle>Posted by {selectedItem.seller} on {selectedItem.time}</CardSubtitle>
+                    <CardText>{selectedItem.detail}</CardText>
+                    <Row>
+                    <ReserveModal /> {' '} <SaveModal />
+                    </Row>
                 </CardBody>
             </Card>
         </div>
     );
-}
+};
 
 function RenderComments({comments}) {
     if (comments == null) {
