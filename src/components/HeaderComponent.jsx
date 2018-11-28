@@ -117,22 +117,22 @@ class Header extends Component {
             </Collapse>
             <Nav className="ml-auto col-6 col-sm-6" navbar>
               <NavItem>
-                <SearchComponent />
+                <SearchComponent filterResults={this.props.filterResults} />
               </NavItem>
             </Nav>
             <Nav>
-              <div class="row">
-                <div class="col-sm">
+              <div className="row">
+                <div className="col-sm">
                   <NavItem>
                       <NewPostModal />
                   </NavItem>
                 </div>
-                <div class="col-sm">
+                <div className="col-sm">
                   <NavItem>
                     <Register />
                   </NavItem>
                 </div>
-                <div class="col-xs">
+                <div className="col-xs">
                   <NavItem>
                     <Login />
                   </NavItem>
