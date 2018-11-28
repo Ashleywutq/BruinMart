@@ -115,7 +115,7 @@ class Header extends Component {
                 </NavItem>
               </Nav>
             </Collapse>
-            <Nav className="ml-auto col-8 col-sm-8" navbar>
+            <Nav className="ml-auto col-6 col-sm-6" navbar>
               <NavItem>
                 <SearchComponent />
               </NavItem>
