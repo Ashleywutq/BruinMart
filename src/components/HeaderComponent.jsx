@@ -18,6 +18,7 @@ import {
 } from "reactstrap";
 
 import Login from "./LoginComponent";
+import Register from "./RegisterComponent";
 
 import { NavLink } from "react-router-dom";
 import Avatar from "react-avatar";
@@ -112,11 +113,22 @@ class Header extends Component {
                 </NavItem>
               </Nav>
             </Collapse>
-            <Nav className="ml-auto" navbar>
-              <NavItem>
-                <Login />
-              </NavItem>
+
+            <Nav>
+              <div class="row">
+                <div class="col-sm">
+                  <NavItem>
+                    <Register />
+                  </NavItem>
+                </div>
+                <div class="col-xs">
+                  <NavItem>
+                    <Login />
+                  </NavItem>
+                </div>
+              </div>
             </Nav>
+
             {/* <Nav className="md-mx-auto">
                                 <NavItem>
                                     <NavLink className="nav-link nav-buttons" to="/home">
