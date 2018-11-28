@@ -6,6 +6,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { filterResults } from "../redux/ActionCreators";
 
 const mapStateToProps = (state) => {
     return {
@@ -14,21 +15,22 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch) => ({
-//     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
-//     fetchDishes: () => {
-//         dispatch(fetchDishes());
-//     },
-//     fetchComments: () => {
-//         dispatch(fetchComments());
-//     },
-//     fetchPromos: () => {
-//         dispatch(fetchPromos());
-//     },
-//     resetFeedbackForm: () => {
-//         dispatch(actions.reset('feedback'));
-//     }
-// });
+const mapDispatchToProps = (dispatch) => ({
+    filterResults: (searchText) => dispatch(filterResults(searchText))
+    // postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+    // fetchDishes: () => {
+    //     dispatch(fetchDishes());
+    // },
+    // fetchComments: () => {
+    //     dispatch(fetchComments());
+    // },
+    // fetchPromos: () => {
+    //     dispatch(fetchPromos());
+    // },
+    // resetFeedbackForm: () => {
+    //     dispatch(actions.reset('feedback'));
+    // }
+});
 
 class Main extends Component {
     constructor(props) {
@@ -54,7 +56,7 @@ class Main extends Component {
 
         return (
             <div>
-                <Header users={this.props.users}/>
+                <Header users={this.props.users} filterResults={this.props.filterResults} />
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Redirect to="/" />
@@ -66,7 +68,7 @@ class Main extends Component {
 
 export default withRouter(
     connect(
-        mapStateToProps//,
-        // mapDispatchToProps
+        mapStateToProps,
+        mapDispatchToProps
     )(Main)
 );

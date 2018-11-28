@@ -13,11 +13,11 @@ function RenderCard({ item }) {
                     <CardTitle>Item Name</CardTitle>
                     <CardSubtitle>Posted by Joe Bruin on 26/11/2018</CardSubtitle>
                     <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                    <div class="row">
-                        <div class="col-sm">
+                    <div className="row">
+                        <div className="col-sm">
                         <ReserveModal />
                         </div>
-                        <div class="col-sm">
+                        <div className="col-sm">
                         <SaveModal />
                         </div>
                     </div>
@@ -32,11 +32,11 @@ function RenderCard({ item }) {
                 <CardTitle>{item.name}</CardTitle>
                 <CardSubtitle>Posted by {item.seller} on {item.time}</CardSubtitle>
                 <CardText>{item.detail}</CardText>
-                    <div class="row">
-                        <div class="col-sm">
+                    <div className="row">
+                        <div className="col-sm">
                         <ReserveModal item={item}/>
                         </div>
-                        <div class="col-sm">
+                        <div className="col-sm">
                         <SaveModal item={item}/>
                         </div>
                     </div>
