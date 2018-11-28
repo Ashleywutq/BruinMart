@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, CardLink, Button, Row } from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardDeck, CardSubtitle, CardLink, Button, Row } from 'reactstrap';
 import { RenderItem } from './ItemDetailComponent';
 
 function RenderCard({ item }) {
@@ -7,8 +7,7 @@ function RenderCard({ item }) {
         <Card>
             <CardImg
                 top
-                height="200px"
-                width="200px"
+                width="100%"
                 src={item.picture}
                 alt={item.name}
             />
@@ -48,7 +47,11 @@ function Home(props) {
                     <hr />
                 </div>
             </div>
-            <div className="row">{sellItems}</div>
+            <div className="row">
+                <CardDeck>
+                    {sellItems}
+                </CardDeck>
+            </div>
         </div>
     );
 }
