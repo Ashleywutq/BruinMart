@@ -5,44 +5,43 @@ import {
   Navbar,
   NavbarBrand,
   NavbarNav,
-  NavbarToggler,
-  Collapse,
   NavItem,
   NavLink,
+  NavbarToggler,
+  Collapse,
   Dropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Container,
+  FormInline,
+  Fa
 } from "mdbreact";
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 class NavbarFeatures extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapse: false,
-      isWideEnough: false
-    };
-    this.onClick = this.onClick.bind(this);
-  }
+  state = {
+    collapseID: ""
+  };
 
-  onClick() {
-    this.setState({
-      collapse: !this.state.collapse
-    });
-  }
+  toggleCollapse = collapseID => () =>
+    this.setState(prevState => ({
+      collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+    }));
+
   render() {
     return (
       <Router>
-        <Navbar color="indigo" dark expand="md" scrolling>
-          <NavbarBrand href="/login">
+        <Navbar color="secondary-color" dark expand="xl" scrolling>
+          <NavbarBrand href="/">
             <strong>
               <FontAwesomeIcon icon="stroopwafel" />
               BruinMart
             </strong>
           </NavbarBrand>
-          {!this.state.isWideEnough && <NavbarToggler onClick={this.onClick} />}
-          <Collapse isOpen={this.state.collapse} navbar>
+          <NavbarToggler onClick={this.toggleCollapse("navbarCollapse3")} />
+          <Collapse id="navbarCollapse3" isOpen={this.state.collapseID} navbar>
             <NavbarNav left>
               <NavItem active>
                 <NavLink to="#">
@@ -54,7 +53,7 @@ class NavbarFeatures extends React.Component {
                 <Dropdown>
                   <DropdownToggle nav caret>
                     <FontAwesomeIcon icon="camera" />
-                    Features
+                    Filters
                   </DropdownToggle>
                   <DropdownMenu>
                     <DropdownItem href="#">Book</DropdownItem>
@@ -77,17 +76,43 @@ class NavbarFeatures extends React.Component {
                   </DropdownMenu>
                 </Dropdown>
               </NavItem>
+              <NavItem>
+                <FormInline waves>
+                  <div className="md-form my-0">
+                    <input
+                      className="form-control mr-sm-2"
+                      type="text"
+                      placeholder="Search"
+                      aria-label="Search"
+                    />
+                  </div>
+                </FormInline>
+              </NavItem>
             </NavbarNav>
             <NavbarNav right>
               <NavItem>
-                <form className="form-inline md-form mt-1">
-                  <input
-                    className="form-control mr-sm-2 mb-1 text-white"
-                    type="text"
-                    placeholder="Search"
-                    aria-label="Search"
-                  />
-                </form>
+                <NavLink
+                  className="waves-effect waves-light d-flex align-items-center"
+                  to="#!"
+                >
+                  1<Fa icon="envelope" className="ml-1" />
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <Dropdown>
+                  <DropdownToggle className="dopdown-toggle" nav>
+                    <img
+                      src="assets/images/joe_bruin.jpg"
+                      className="rounded-circle z-depth-0"
+                      style={{ height: "35px", padding: 0 }}
+                      alt=""
+                    />
+                  </DropdownToggle>
+                  <DropdownMenu className="dropdown-default" right>
+                    <DropdownItem href="/profile">My account</DropdownItem>
+                    <DropdownItem href="/login">Log out</DropdownItem>
+                  </DropdownMenu>
+                </Dropdown>
               </NavItem>
             </NavbarNav>
           </Collapse>

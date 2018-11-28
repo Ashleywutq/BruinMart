@@ -105,7 +105,7 @@ class Login extends Component {
                     Register
                   </Button>
                 </Col>
-                <Col xs={{ size: 5, offset: 1 }}>
+                <Col xs={{ size: 6, offset: 0 }}>
                   <Button block type="submit" color="primary">
                     Login
                   </Button>
