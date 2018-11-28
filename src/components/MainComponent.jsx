@@ -4,7 +4,31 @@ import Login from './LoginComponent';
 import Register from './RegisterComponent';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = (state) => {
+    return {
+        sellItems: state.sellItems,
+        users: state.users
+    };
+};
+
+// const mapDispatchToProps = (dispatch) => ({
+//     postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
+//     fetchDishes: () => {
+//         dispatch(fetchDishes());
+//     },
+//     fetchComments: () => {
+//         dispatch(fetchComments());
+//     },
+//     fetchPromos: () => {
+//         dispatch(fetchPromos());
+//     },
+//     resetFeedbackForm: () => {
+//         dispatch(actions.reset('feedback'));
+//     }
+// });
 
 class Main extends Component {
     constructor(props) {
@@ -25,35 +49,24 @@ class Main extends Component {
 
     render() {
         const HomePage = () => {
-            return <Home />;
+            return <Home sellItems={this.props.sellItems} />;
         };
 
-        const LoginPage = () => {
-            return <Login onSubmit={this.handleSubmit} />;
-        };
-
-        if (this.state.loggedIn) {
-            return (
-                <div>
-                    <Header />
-                    <Switch>
-                        <Route exact path="/" component={HomePage} />
-                        <Redirect to="/" />
-                    </Switch>
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    <Switch>
-                        <Route path="/register" component={() => <Register />} />
-                        <Route path="/login" component={LoginPage} />
-                        <Redirect to="/login" />
-                    </Switch>
-                </div>
-            );
-        }
+        return (
+            <div>
+                <Header users={this.props.users}/>
+                <Switch>
+                    <Route exact path="/" component={HomePage} />
+                    <Redirect to="/" />
+                </Switch>
+            </div>
+        );
     }
 }
 
-export default Main;
+export default withRouter(
+    connect(
+        mapStateToProps//,
+        // mapDispatchToProps
+    )(Main)
+);
