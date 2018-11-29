@@ -4,12 +4,16 @@ import { sellItems } from './items';
 import { Users } from './users';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
+import { InitialPost } from './posts';
 
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({
             sellItems: sellItems,
-            users: Users
+            users: Users,
+            ...createForms({
+                newPost: InitialPost
+            })
         }),
         applyMiddleware(thunk, logger)
     );

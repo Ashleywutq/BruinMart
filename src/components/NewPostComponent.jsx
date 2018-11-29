@@ -1,17 +1,7 @@
 import React from 'react';
-import {
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter
-} from 'reactstrap';
+import { Button, Label, FormText, Modal, ModalHeader, ModalBody, Col, Row } from 'reactstrap';
 import ImageUpload from './ImageUploadComponent';
+import { Control, Form, Errors } from 'react-redux-form';
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -26,54 +16,116 @@ class ModalExample extends React.Component {
             modal: false
         };
 
-        this.toggle = this.toggle.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    toggle() {
+    toggleModal() {
         this.setState({
             modal: !this.state.modal
         });
     }
 
+    handleSubmit(values) {
+        this.props.resetNewPostForm();
+        this.props.postItem({
+            name: values.itemName,
+            price: parseInt(values.itemPrice),
+            picture:
+                'https://s7d4.scene7.com/is/image/roomandboard/?layer=0&size=498,400&scl=1&src=964101_wood_W&layer=comp&$prodzoom0$',
+            reserved: false,
+            seller: 'Joe Bruin',
+            time: new Date().toISOString(),
+            detail: values.itemDes
+        });
+        this.toggleModal();
+    }
+
     render() {
         return (
             <div>
-                <Button style={{ background: 'transparent' }} onClick={this.toggle}>
+                <Button style={{ background: 'transparent' }} onClick={this.toggleModal}>
                     <span className="fa fa-plus fa-lg" />
                 </Button>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className="modal-lg">
-                    <ModalHeader toggle={this.toggle}>New Post</ModalHeader>
+                <Modal className="modal-lg" isOpen={this.state.modal} toggle={this.toggleModal}>
+                    <ModalHeader toggle={this.toggleModal}>New Post</ModalHeader>
                     <ModalBody>
-                        <Form>
-                            <FormGroup>
-                                <Label for="Item">Item</Label>
-                                <Input
-                                    type="text"
-                                    name="item"
-                                    id="itemName"
-                                    placeholder="enter the name of the item you want to sell"
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="Price">Price</Label>
-                                <Input
-                                    type="text"
-                                    name="price"
-                                    id="itemPrice"
-                                    placeholder="enter a number in US dollars"
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label for="itemDes">Item Description</Label>
-                                <Input
-                                    type="textarea"
-                                    name="itemDes"
-                                    id="itemDes"
-                                    placeholder="enter a few lines to describe your item and outline anything potential buyers may need to know"
-                                />
-                            </FormGroup>
+                        <Form model="newPost" onSubmit={(values) => this.handleSubmit(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor=".itemName" md={2}>
+                                    Name
+                                </Label>
+                                <Col md={10}>
+                                    <Control.text
+                                        model=".itemName"
+                                        id="itemName"
+                                        name="itemName"
+                                        placeholder="Enter the name of the item you want to sell"
+                                        className="form-control"
+                                        // validators={{
+                                        //     required,
+                                        //     minLength: minLength(3),
+                                        //     maxLength: maxLength(15)
+                                        // }}
+                                    />
+                                    {/* <Errors
+                                        className="text-danger"
+                                        model=".itemName"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be greater than 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    /> */}
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor=".itemPrice" md={2}>
+                                    Price
+                                </Label>
+                                <Col md={10}>
+                                    <Control.text
+                                        model=".itemPrice"
+                                        id="itemPrice"
+                                        name="itemPrice"
+                                        placeholder="Enter your price in US dollars"
+                                        className="form-control"
+                                        // validators={{
+                                        //     required,
+                                        //     minLength: minLength(3),
+                                        //     maxLength: maxLength(15)
+                                        // }}
+                                    />
+                                    {/* <Errors
+                                    className="text-danger"
+                                    model=".lastName"
+                                    show="touched"
+                                    messages={{
+                                        required: 'Required',
+                                        minLength: 'Must be greater than 2 characters',
+                                        maxLength: 'Must be 15 characters or less'
+                                    }}
+                                /> */}
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor=".itemDes" md={2}>
+                                    Item Description
+                                </Label>
+                                <Col md={10}>
+                                    <Control.textarea
+                                        model=".itemDes"
+                                        id="itemDes"
+                                        name="itemDes"
+                                        placeholder="Enter a few lines to describe your item and outline anything potential buyers may need to know"
+                                        className="form-control"
+                                        rows="4"
+                                    />
+                                </Col>
+                            </Row>
                             {/* <FormGroup>
-          <Label for="exampleSelectMulti">Select Multiple</Label>
+          <Label htmlFor="exampleSelectMulti">Select Multiple</Label>
           <Input type="select" name="selectMulti" id="exampleSelectMulti" multiple>
             <option>1</option>
             <option>2</option>
@@ -82,12 +134,16 @@ class ModalExample extends React.Component {
             <option>5</option>
           </Input>
         </FormGroup> */}
-                            <FormGroup>
-                                <Label for="exampleFile">File</Label>
+                            <Row className="form-group">
+                                <Label htmlFor=".pictures" md={2}>
+                                    Pictures
+                                </Label>
                                 {/* <Input type="file" name="file" id="exampleFile" /> */}
-                                <ImageUpload />
-                                <FormText color="muted">Upload a picture for your item here.</FormText>
-                            </FormGroup>
+                                <Col md={10}>
+                                    <ImageUpload />
+                                    <FormText color="muted">Upload a picture for your item here.</FormText>
+                                </Col>
+                            </Row>
                             {/* <FormGroup tag="fieldset">
           <legend>Radio Buttons</legend>
           <FormGroup check>
@@ -109,22 +165,35 @@ class ModalExample extends React.Component {
             </Label>
           </FormGroup>
         </FormGroup> */}
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" /> I understand that my information will only be provided to
-                                    any potential buyers after they have reserved my item.
-                                </Label>
-                            </FormGroup>
+                            <Row className="form-group">
+                                <Col>
+                                    <div className="form-check">
+                                        <Label check>
+                                            <Control.checkbox
+                                                model=".agreeTerms"
+                                                name="agreeTerms"
+                                                className="form-check-input"
+                                            />{' '}
+                                            I understand that my information will only be provided to any potential
+                                            buyers after they have reserved my item.
+                                        </Label>
+                                    </div>
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Col md={{ size: 4, offset: 2 }}>
+                                    <Button block type="submit" value="submit" color="primary">
+                                        Post
+                                    </Button>
+                                </Col>
+                                <Col md={{ size: 4, offset: 2 }}>
+                                    <Button block color="secondary" onClick={this.toggleModal}>
+                                        Cancel
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Form>
                     </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>
-                            Post
-                        </Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>
-                            Cancel
-                        </Button>
-                    </ModalFooter>
                 </Modal>
             </div>
         );
