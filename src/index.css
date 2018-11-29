@@ -20,9 +20,16 @@ code {
   height: 20vw;
   object-fit: contain;
 }
-
 .post-modal {
   display: block; 
   width: 1500px; 
   padding-left: 0px;
+}
+.upload-box{
+  text-align:center;
+  padding-top: 30%;
+}
+#HASH {
+  display: flex;
+  justify-content: space-between;
 }
