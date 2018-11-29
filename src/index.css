@@ -15,8 +15,9 @@ code {
 .col-sm{
   text-align: center;
 }
+
 .card-img-top {
-  width: 27vw;
+  width: 100%;
   height: 20vw;
   object-fit: contain;
 }

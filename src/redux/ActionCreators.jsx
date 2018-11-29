@@ -30,15 +30,23 @@ export const filterResults = (searchText, maxResults = 20) => ({
 
 //  This is a thunk
 export const fetchItems = () => (dispatch) => {
-    console.log(itemsRef);
     dispatch(itemsLoading(true));
 
     return itemsRef
         .once('value')
         .then((snapshot) => {
-            console.log(snapshot.val());
-            if (snapshot.val() === null) throw Error('Fetch failed.');
-            dispatch(addItems(snapshot.val()));
+            var rawItems = snapshot.val();
+            console.log(rawItems);
+            if (rawItems === null) throw Error('Fetch failed.');
+            var sellItems = [];
+            for (var key in rawItems) {
+                if (rawItems.hasOwnProperty(key)) {
+                    var item = rawItems[key];
+                    item.id = key;
+                    sellItems.push(item);
+                }
+            }
+            dispatch(addItems(sellItems));
         })
         .catch((error) => dispatch(itemsFailed(error.message)));
 };
@@ -56,3 +64,17 @@ export const itemsFailed = (err) => ({
     type: ActionTypes.ITEMS_FAILED,
     payload: err
 });
+
+export const addItem = (item) => ({
+    type: ActionTypes.ADD_ITEM,
+    payload: item
+});
+
+export const postItem = (item) => (dispatch) => {
+    return itemsRef.push(item).then(function(snapshot) {
+        item.id = snapshot.key;
+        console.log(item);
+        dispatch(addItem(item));
+    });
+};
+

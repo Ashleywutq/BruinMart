@@ -14,7 +14,9 @@ export const sellItems = (
         case ActionTypes.FILTER:
             var searchText = action.payload.searchText;
             return {
-                ...state, isLoading: false, err: null, 
+                ...state,
+                isLoading: false,
+                err: null,
                 sellItems: state.origSellItems
                     .filter((item) => {
                         if (item.name.toLowerCase().includes(searchText.toLowerCase())) {
@@ -27,12 +29,20 @@ export const sellItems = (
                     })
                     .slice(0, action.payload.maxResults)
             };
+        case ActionTypes.ADD_ITEM:
+            console.log(state.sellItems);
+            console.log(state.origSellItems);
+            return {
+                ...state,
+                sellItems: state.sellItems.concat(action.payload),
+                origSellItems: state.origSellItems.concat(action.payload)
+            };
         case ActionTypes.ADD_ITEMS:
-            return {...state, isLoading: false, err: null, sellItems: action.payload, origSellItems: action.payload};
+            return { ...state, isLoading: false, err: null, sellItems: action.payload, origSellItems: action.payload };
         case ActionTypes.ITEMS_LOADING:
-            return {...state, isLoading: true, err: null, sellItems: [], origSellItems: []};
+            return { ...state, isLoading: true, err: null, sellItems: [], origSellItems: [] };
         case ActionTypes.ITEMS_FAILED:
-            return {...state, isLoading: false, err: action.payload, sellItems: [], origSellItems: []};        
+            return { ...state, isLoading: false, err: action.payload, sellItems: [], origSellItems: [] };
         default:
             return state;
     }
