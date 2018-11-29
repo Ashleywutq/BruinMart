@@ -72,7 +72,10 @@ class Header extends Component {
                         </Nav>
                         <Nav navbar>
                             <NavItem>
-                                <NewPostModal />
+                                <NewPostModal
+                                    resetNewPostForm={this.props.resetNewPostForm}
+                                    postItem={this.props.postItem}
+                                />
                             </NavItem>
                         </Nav>
 
