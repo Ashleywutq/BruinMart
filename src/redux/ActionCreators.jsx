@@ -9,24 +9,24 @@ export const filterResults = (searchText, maxResults = 20) => ({
     }
 });
 
-export const postItems = (itemName, pictures, price, description) => (dispatch) => {
-    const newItem = {
-        itemName: itemName,
-        pictures: pictures,
-        price: price,
-        description: description
-    };
+// export const postItems = (itemName, pictures, price, description) => (dispatch) => {
+//     const newItem = {
+//         itemName: itemName,
+//         pictures: pictures,
+//         price: price,
+//         description: description
+//     };
 
-    newItem.date = new Date().toISOString();
+//     newItem.date = new Date().toISOString();
 
-    return itemsRef
-        .push(newItem)
-        .then((snapshot) => {
-            newItem.id = snapshot.id;
-            dispatch(addItem(item));
-        })
-        .catch((error) => dispatch(itemsFailed(error.message)));
-};
+//     return itemsRef
+//         .push(newItem)
+//         .then((snapshot) => {
+//             newItem.id = snapshot.id;
+//             dispatch(addItem(item));
+//         })
+//         .catch((error) => dispatch(itemsFailed(error.message)));
+// };
 
 //  This is a thunk
 export const fetchItems = () => (dispatch) => {
