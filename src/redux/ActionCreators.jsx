@@ -1,12 +1,12 @@
-import * as ActionTypes from './ActionTypes';
-import { itemsRef } from '../firebase';
+import * as ActionTypes from "./ActionTypes";
+import { itemsRef } from "../firebase";
 
 export const filterResults = (searchText, maxResults = 20) => ({
-    type: ActionTypes.FILTER,
-    payload: {
-        searchText: searchText,
-        maxResults: maxResults
-    }
+  type: ActionTypes.FILTER,
+  payload: {
+    searchText: searchText,
+    maxResults: maxResults
+  }
 });
 
 // export const postItems = (itemName, pictures, price, description) => (dispatch) => {
@@ -29,6 +29,7 @@ export const filterResults = (searchText, maxResults = 20) => ({
 // };
 
 //  This is a thunk
+<<<<<<< HEAD
 export const fetchItems = () => (dispatch) => {
     dispatch(itemsLoading(true));
 
@@ -49,22 +50,37 @@ export const fetchItems = () => (dispatch) => {
             dispatch(addItems(sellItems));
         })
         .catch((error) => dispatch(itemsFailed(error.message)));
+=======
+export const fetchItems = () => dispatch => {
+  console.log(itemsRef);
+  dispatch(itemsLoading(true));
+
+  return itemsRef
+    .once("value")
+    .then(snapshot => {
+      console.log(snapshot.val());
+      if (snapshot.val() === null) throw Error("Fetch failed.");
+      dispatch(addItems(snapshot.val()));
+    })
+    .catch(error => dispatch(itemsFailed(error.message)));
+>>>>>>> add login action and reducer
 };
 
-export const addItems = (items) => ({
-    type: ActionTypes.ADD_ITEMS,
-    payload: items
+export const addItems = items => ({
+  type: ActionTypes.ADD_ITEMS,
+  payload: items
 });
 
 export const itemsLoading = () => ({
-    type: ActionTypes.ITEMS_LOADING
+  type: ActionTypes.ITEMS_LOADING
 });
 
-export const itemsFailed = (err) => ({
-    type: ActionTypes.ITEMS_FAILED,
-    payload: err
+export const itemsFailed = err => ({
+  type: ActionTypes.ITEMS_FAILED,
+  payload: err
 });
 
+<<<<<<< HEAD
 export const addItem = (item) => ({
     type: ActionTypes.ADD_ITEM,
     payload: item
@@ -78,3 +94,23 @@ export const postItem = (item) => (dispatch) => {
     });
 };
 
+=======
+//actions for login logout
+export const login = (username, password) => {
+  return {
+    type: ActionTypes.LOG_IN,
+    username: username,
+    password: password
+  };
+};
+
+export const logout = () => {
+  return {
+    type: ActionTypes.LOG_OUT
+  };
+};
+
+export const signup = (username, password) => {
+  return dispatch => {};
+};
+>>>>>>> add login action and reducer
