@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button,Form, FormGroup, Label, Input, FormText ,Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import ImageUpload from './ImageUploadComponent';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -57,8 +56,7 @@ class ModalExample extends React.Component {
         </FormGroup> */}
         <FormGroup>
           <Label for="exampleFile">File</Label>
-          {/* <Input type="file" name="file" id="exampleFile" /> */}
-          <ImageUpload />
+          <Input type="file" name="file" id="exampleFile" />
           <FormText color="muted">
             Upload a picture for your item here.
           </FormText>

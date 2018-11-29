@@ -61,7 +61,7 @@ class Register extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label htmlFor="email">email</Label>
+                <Label htmlFor="email">Email</Label>
                 <Input
                   type="email"
                   id="email"
@@ -69,7 +69,15 @@ class Register extends React.Component {
                   innerRef={input => (this.password = input)}
                 />
               </FormGroup>
-
+              <FormGroup>
+                <Label htmlFor="tel">Contact number</Label>
+                <Input
+                  type="tel"
+                  id="tel"
+                  name="tel"
+                  innerRef={input => (this.password = input)}
+                />
+              </FormGroup>
               <FormGroup check>
                 <Label check>
                   <Input
@@ -80,6 +88,7 @@ class Register extends React.Component {
                   Remember me
                 </Label>
               </FormGroup>
+
               <Button type="submit" value="submit" color="primary">
                 Register
               </Button>

@@ -82,3 +82,11 @@ address{
 .nav-buttons {
   color: lightgray;
 }
+
+.nav-link {
+  color: lightgray
+}
+
+nav a:hover {
+  color: white
+}
