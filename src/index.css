@@ -29,7 +29,7 @@ code {
   text-align:center;
   padding-top: 30%;
 }
-#HASH {
+.card-title {
   display: flex;
   justify-content: space-between;
 }

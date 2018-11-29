@@ -13,6 +13,7 @@
     "react-avatar": "^3.4.6",
     "react-burger-menu": "^2.5.4",
     "react-dom": "^16.6.3",
+    "react-dropzone": "^7.0.1",
     "react-fontawesome": "^1.6.1",
     "react-moment": "^0.8.3",
     "react-native": "^0.57.7",

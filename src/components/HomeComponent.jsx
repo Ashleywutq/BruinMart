@@ -29,7 +29,7 @@ function RenderCard({ item }) {
         <Card>
             <CardImg top width="100%" className="card-img-top img-fluid" src={item.picture} alt={item.name} />
             <CardBody>
-                <CardTitle id="HASH">
+                <CardTitle className="card-title">
                     <span> {item.name} </span>
                     <span> {item.price}</span>
                 </CardTitle>
