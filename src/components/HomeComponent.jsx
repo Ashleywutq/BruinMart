@@ -29,8 +29,11 @@ function RenderCard({ item }) {
         <Card>
             <CardImg top width="100%" className="card-img-top img-fluid" src={item.picture} alt={item.name} />
             <CardBody>
-                <CardTitle>{item.name}</CardTitle>
-                <CardSubtitle>Posted by {item.seller} on {item.time}</CardSubtitle>
+                <CardTitle className="card-title">
+                    <span> {item.name} </span>
+                    <span> {item.price}</span>
+                </CardTitle>
+                <CardSubtitle>{item.seller} <br /> {item.time}</CardSubtitle>
                 <CardText>{item.detail}</CardText>
                     <div class="row">
                         <div class="col-sm">
