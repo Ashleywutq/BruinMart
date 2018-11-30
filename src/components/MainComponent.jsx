@@ -1,20 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import Home from "./HomeComponent";
-import Profile from "./ProfileComponent";
-import Header from "./HeaderComponent";
-import SideBar from "./SideBarComponent";
-import PostList from "./PostListComponent";
-import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
-import {
-  filterResults,
-  fetchItems,
-  postItem,
-  reserveItem
-} from "../redux/ActionCreators";
-import { actions } from "react-redux-form";
-=======
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Profile from './ProfileComponent';
@@ -25,7 +8,6 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { filterResults, fetchItems, postItem, reserveItem } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
->>>>>>> Minor Changes to MainComponent and PostListComponent
 
 import '../style.css';
 
