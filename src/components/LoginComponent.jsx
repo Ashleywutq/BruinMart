@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Col, Row, Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
 import { login } from '../redux/ActionCreators';
+
+import Register from './RegisterComponent';
 
 class Login extends React.Component {
     constructor(props) {
@@ -70,9 +72,16 @@ class Login extends React.Component {
                                 />
                             </FormGroup>
 
-                            <Button type="submit" value="submit" color="primary">
-                                Login
-                            </Button>
+                            <Row>
+                                <Col xl={{ size: 4, offset: 1 }}>
+                                    <Button type="submit" value="submit" color="primary">
+                                        <span className="fa fa-sign-in fa-lg" /> Login
+                                    </Button>
+                                </Col>
+                                <Col xl={{ size: 4, offset: 2 }}>
+                                    <Register />
+                                </Col>
+                            </Row>
                         </Form>
                     </ModalBody>
                 </Modal>
