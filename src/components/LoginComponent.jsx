@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label, Row, Col } from 'reactstrap';
 import { fetchUserInfo } from '../redux/ActionCreators';
 
 import Register from './RegisterComponent';
