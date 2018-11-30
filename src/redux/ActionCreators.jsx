@@ -90,10 +90,16 @@ export const fetchUserInfo = (username, password) => (dispatch) => {
         .once('value')
         .then((snapshot) => {
             var userInfo = snapshot.val();
-            console.log(userInfo);
-            if (userInfo === null) throw Error('User does not exist.');
-            console.log(userInfo);
-            // dispatch(addItems(sellItems));
+            if (userInfo === null) {
+                alert('Username does not exist.');
+                throw Error('Username does not exist.');
+            }
+
+            if (userInfo.password !== password) {
+                alert('Password is wrong!');
+                throw Error('Password is wrong!');
+            }
+
             var posts = [];
             for (var key in userInfo.posts) {
                 if (userInfo.posts.hasOwnProperty(key)) {
@@ -103,8 +109,15 @@ export const fetchUserInfo = (username, password) => (dispatch) => {
             userInfo.posts = posts;
             dispatch(login(username, password, userInfo));
         })
-        .catch((error) => dispatch(itemsFailed(error.message)));
+        .catch((error) => {
+            dispatch(loginFailed(error.message));
+        });
 };
+
+export const loginFailed = (error) => ({
+    type: ActionTypes.LOG_IN_FAILED,
+    payload: error
+});
 
 //actions for login logout
 export const login = (username, password, userInfo) => {

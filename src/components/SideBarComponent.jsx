@@ -6,8 +6,8 @@ import Avatar from 'react-avatar';
 import Login from './LoginComponent';
 import { connect } from 'react-redux';
 
-function RenderSidebar(isLoggedin, username) {
-    if (isLoggedin) {
+function RenderSidebar(isLoggedIn, username) {
+    if (isLoggedIn) {
         return (
             <div>
                 <NavItem>
@@ -69,7 +69,7 @@ const SideBar = (props) => {
                 <NavbarBrand className="mr-auto col-2 col-sm-2">
                     <Avatar size={50} src="assets/images/joe_bruin.jpg" round={true} />
                 </NavbarBrand>
-                {RenderSidebar(props.isLoggedin, props.username)}
+                {RenderSidebar(props.isLoggedIn, props.username)}
             </Nav>
         </Menu>
     );
@@ -77,8 +77,7 @@ const SideBar = (props) => {
 
 const mapStateToProps = (state) => ({
     username: state.users.username,
-    password: state.users.password,
-    isLoggedin: state.users.isLoggedIn
+    isLoggedIn: state.users.isLoggedIn
 });
 
 export default connect(

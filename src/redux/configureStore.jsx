@@ -5,6 +5,7 @@ import { Users } from './users';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { InitialPost } from './posts';
+import { InitialLogin } from './login';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -12,7 +13,8 @@ export const ConfigureStore = () => {
             sellItems: sellItems,
             users: Users,
             ...createForms({
-                newPost: InitialPost
+                newPost: InitialPost,
+                login: InitialLogin
             })
         }),
         applyMiddleware(thunk, logger)
