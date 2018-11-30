@@ -30,7 +30,7 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Button style={{ background: 'transparent' }} onClick={this.toggle}>
                     <span className="fa fa-sign-in" /> Login
                 </Button>
@@ -38,11 +38,18 @@ class Login extends Component {
                     <ModalHeader toggle={this.toggle}>Login</ModalHeader>
                     <ModalBody>
                         <Form model="login" onSubmit={(values) => this.onSubmit(values)}>
+                            {/* <Row>
+                                <Col xs={{size: 4, offset: 3}}>
+                                    <h1 className="justify-content-center align-self-center">
+                                        <strong>BruinMart</strong>
+                                    </h1>
+                                </Col>
+                            </Row> */}
                             <Row className="form-group">
-                                <Label htmlFor=".username" md={2}>
-                                    Username
+                                <Label htmlFor="username" xs={{ size: 1, offset: 1 }}>
+                                    <span className="fa fa-user fa-lg" />
                                 </Label>
-                                <Col md={10}>
+                                <Col xs={8}>
                                     <Control.text
                                         model=".username"
                                         id="username"
@@ -59,16 +66,16 @@ class Login extends Component {
                                         show="touched"
                                         messages={{
                                             required: 'Required',
-                                            error: 'Username doesn\'t exist!'
+                                            error: "Username doesn't exist!"
                                         }}
                                     />
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Label htmlFor=".password" md={2}>
-                                    Last Name
+                                <Label htmlFor="password" xs={{ size: 1, offset: 1 }}>
+                                    <span className="fa fa-lock fa-lg" />
                                 </Label>
-                                <Col md={10}>
+                                <Col xs={8}>
                                     <Control.password
                                         model=".password"
                                         id="password"
@@ -90,16 +97,11 @@ class Login extends Component {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xl={{ size: 3, offset: 1 }}>
+                                <Col xl={{ size: 3, offset: 2 }}>
                                     <Register />
                                 </Col>
-                                <Col xl={{ size: 3, offset: 4 }}>
-                                    <Button
-                                        block
-                                        className="item-button"
-                                        value="submit"
-                                        color="primary"
-                                    >
+                                <Col xl={{ size: 3, offset: 2 }}>
+                                    <Button block className="item-button" value="submit" color="primary">
                                         Login
                                     </Button>
                                 </Col>

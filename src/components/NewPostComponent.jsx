@@ -3,6 +3,11 @@ import { Button, Label, FormText, Modal, ModalHeader, ModalBody, Col, Row } from
 import ImageUpload from './ImageUploadComponent';
 import { Control, Form, Errors } from 'react-redux-form';
 
+const required = (val) => val && val.length;
+const maxLength = (len) => (val) => !val || val.length <= len;
+const minLength = (len) => (val) => !val || val.length >= len;
+const isNumber = (val) => !isNaN(Number(val));
+const checked = (val) => val && val === true;
 class NewPost extends React.Component {
     constructor(props) {
         super(props);
@@ -20,9 +25,9 @@ class NewPost extends React.Component {
         });
     }
 
-
     handleSubmit(values) {
-        alert("Post Successful!");
+        alert('Post Successful!');
+        console.log(this.props.users);
         this.props.resetNewPostForm();
         this.props.postItem({
             name: values.itemName,
@@ -32,7 +37,7 @@ class NewPost extends React.Component {
             reserved: false,
             seller: this.props.users.userInfo.name,
             time: new Date().toISOString(),
-            detail: values.itemDes,
+            detail: values.itemDes === '' ? 'No more details provided' : values.itemDes,
             username: this.props.users.username
         });
         this.toggleModal();
@@ -49,62 +54,58 @@ class NewPost extends React.Component {
                     <ModalBody>
                         <Form model="newPost" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
-                                <Label htmlFor=".itemName" md={2}>
+                                <Label htmlFor=".itemName" md={1}>
                                     <b>Name</b>
                                 </Label>
-                                <Col md={9}>
+                                <Col md={{ size: 5, offset: 1 }}>
                                     <Control.text
                                         model=".itemName"
                                         id="itemName"
                                         name="itemName"
                                         placeholder="Enter the name of the item you want to sell"
                                         className="form-control"
-                                        // validators={{
-                                        //     required,
-                                        //     minLength: minLength(3),
-                                        //     maxLength: maxLength(15)
-                                        // }}
+                                        validators={{
+                                            required,
+                                            minLength: minLength(3),
+                                            maxLength: maxLength(15)
+                                        }}
                                     />
-                                    {/* <Errors
+                                    <Errors
                                         className="text-danger"
                                         model=".itemName"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            minLength: 'Must be greater than 2 characters',
-                                            maxLength: 'Must be 15 characters or less'
+                                            required: 'Required. ',
+                                            minLength: 'Must be greater than 2 characters. ',
+                                            maxLength: 'Must be 15 characters or less. '
                                         }}
-                                    /> */}
+                                    />
                                 </Col>
-                            </Row>
-                            <Row className="form-group">
-                                <Label htmlFor=".itemPrice" md={2}>
+                                <Label htmlFor=".itemPrice" md={1}>
                                     <b>Price</b>
                                 </Label>
                                 {/* <Col md={0.3}><span className="fa fa-dollar fa-lg" /></Col> */}
-                                <Col md={4}>
+                                <Col md={3}>
                                     <Control.text
                                         model=".itemPrice"
                                         id="itemPrice"
                                         name="itemPrice"
                                         placeholder="Enter your price in US dollars"
                                         className="form-control"
-                                        // validators={{
-                                        //     required,
-                                        //     minLength: minLength(3),
-                                        //     maxLength: maxLength(15)
-                                        // }}
+                                        validators={{
+                                            required,
+                                            isNumber
+                                        }}
                                     />
-                                    {/* <Errors
-                                    className="text-danger"
-                                    model=".lastName"
-                                    show="touched"
-                                    messages={{
-                                        required: 'Required',
-                                        minLength: 'Must be greater than 2 characters',
-                                        maxLength: 'Must be 15 characters or less'
-                                    }}
-                                /> */}
+                                    <Errors
+                                        className="text-danger"
+                                        model=".itemPrice"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. ',
+                                            isNumber: 'Has to be a number. '
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                             <Row className="form-group">
@@ -139,7 +140,7 @@ class NewPost extends React.Component {
                                 {/* <Input type="file" name="file" id="exampleFile" /> */}
                                 <Col md={9}>
                                     <FormText color="muted">Upload a picture for your item here.</FormText>
-                                    <ImageUpload name="itemPic" id="itemPic" className="form-control"/>
+                                    <ImageUpload name="itemPic" id="itemPic" className="form-control" />
                                 </Col>
                             </Row>
                             {/* <FormGroup tag="fieldset">
@@ -164,17 +165,28 @@ class NewPost extends React.Component {
           </FormGroup>
         </FormGroup> */}
                             <Row className="form-group">
-                                <Col>
+                                <Col md={{ offset: 2 }}>
                                     <div className="form-check">
-                                        <Label check md={{size: 9, offset: 2}}>
+                                        <Label check md={9}>
                                             <Control.checkbox
                                                 model=".agreeTerms"
                                                 name="agreeTerms"
                                                 className="form-check-input"
+                                                validators={{
+                                                    checked
+                                                }}
                                             />{' '}
                                             I understand that my information will only be provided to any potential
                                             buyers after they have reserved my item.
                                         </Label>
+                                        <Errors
+                                            className="text-danger"
+                                            model=".agreeTerms"
+                                            show="touched"
+                                            messages={{
+                                                checked: 'You need to agree. '
+                                            }}
+                                        />
                                     </div>
                                 </Col>
                             </Row>
