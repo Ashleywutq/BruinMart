@@ -38,7 +38,7 @@ class Header extends Component {
                     <div className="container">
                         <NavbarToggler onClick={this.toggleSideNav} />
 
-                        <Nav className="col-8" navbar>
+                        <Nav className="mx-auto col-6 col-lg-8" navbar>
                             <NavItem>
                                 <SearchComponent
                                     filterResults={this.props.filterResults}

@@ -32,7 +32,7 @@ class Login extends Component {
         return (
             <div className="container">
                 <Button style={{ background: 'transparent' }} onClick={this.toggle}>
-                    <span className="fa fa-sign-in" /> Login
+                    <span className="fa fa-sign-in fa-lg" />
                 </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Login</ModalHeader>
