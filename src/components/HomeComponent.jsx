@@ -7,14 +7,11 @@ import {
     CardTitle,
     CardDeck,
     CardSubtitle,
-    CardLink,
-    Button,
     Row,
     Col
 } from 'reactstrap';
 import ReserveModal from './ReserveModalComponent';
 import SaveModal from './SaveModalComponent';
-import { RenderItem } from './ItemDetailComponent';
 import Moment from 'react-moment';
 
 function RenderCard({ item }) {
@@ -60,10 +57,10 @@ function RenderCard({ item }) {
                 </CardSubtitle>
                 <CardText>{item.detail}</CardText>
                 <Row>
-                    <Col md={{size: 4, offset: 1}}>
+                    <Col xl={{size: 4, offset: 1}}>
                         <ReserveModal item={item} />
                     </Col>
-                    <Col md={{size: 4, offset: 2}}>
+                    <Col xl={{size: 4, offset: 2}}>
                         <SaveModal item={item} />
                     </Col>
                 </Row>

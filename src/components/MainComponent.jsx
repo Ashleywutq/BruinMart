@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Profile from './ProfileComponent';
 import Header from './HeaderComponent';
-import Footer from './FooterComponent';
 import SideBar from './SideBarComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
