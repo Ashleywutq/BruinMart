@@ -30,7 +30,8 @@ class NewPost extends React.Component {
             reserved: false,
             seller: 'Joe Bruin',
             time: new Date().toISOString(),
-            detail: values.itemDes
+            detail: values.itemDes,
+            username: 'jerry'
         });
         this.toggleModal();
     }

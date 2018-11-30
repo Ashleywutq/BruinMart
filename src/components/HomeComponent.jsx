@@ -4,32 +4,7 @@ import ReserveModal from './ReserveModalComponent';
 import SaveModal from './SaveModalComponent';
 import Moment from 'react-moment';
 
-function RenderCard({ item }) {
-    if (item == null) {
-        return (
-            <Card>
-                <CardImg
-                    top
-                    width="100%"
-                    src="https://placeholdit.imgix.net/~text?txtsize=33&txt=318%C3%97180&w=318&h=180"
-                    alt="Card image cap"
-                />
-                <CardBody>
-                    <CardTitle>Item Name</CardTitle>
-                    <CardSubtitle>Posted by Joe Bruin on 26/11/2018</CardSubtitle>
-                    <CardText>
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </CardText>
-                    <div className="row">
-                        <ReserveModal />
-                    </div>
-                    <div className="row">
-                        <SaveModal />
-                    </div>
-                </CardBody>
-            </Card>
-        );
-    }
+function RenderCard({ item, reserveItem }) {
     return (
         <Card>
             <CardImg top width="100%" className="card-img-top img-fluid" src={item.picture} alt={item.name} />
@@ -46,7 +21,7 @@ function RenderCard({ item }) {
                 <CardText>{item.detail}</CardText>
                 <Row>
                     <Col xl={{ size: 4, offset: 1 }}>
-                        <ReserveModal item={item} />
+                        <ReserveModal item={item} reserveItem={reserveItem} />
                     </Col>
                     <Col xl={{ size: 4, offset: 2 }}>
                         <SaveModal item={item} />
@@ -62,7 +37,7 @@ function Home(props) {
         return (
             <div key={item.id} className="row align-items-start">
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={item} />
+                    <RenderCard item={item} reserveItem={props.reserveItem} />
                 </div>
             </div>
         );

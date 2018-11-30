@@ -3,18 +3,16 @@ import { NavbarBrand, Nav, NavItem } from 'reactstrap';
 import { slide as Menu } from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import Login from './LoginComponent';
+import { connect } from 'react-redux';
 
-const SideBar = (props) => {
-    return (
-        // Pass on our props
-        <Menu {...props}>
-            <Nav navbar onClick={props.toggleSideNav}>
-                <NavbarBrand className="mr-auto col-2 col-sm-2">
-                    <Avatar size={50} src="assets/images/joe_bruin.jpg" round={true} />
-                </NavbarBrand>
+function RenderSidebar(isLoggedin, username) {
+    if (isLoggedin) {
+        return (
+            <div>
                 <NavItem>
                     <NavLink className="nav-link" to="/profile">
-                        <h4>Joe Bruin</h4>
+                        <h4>{username}</h4>
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -47,9 +45,43 @@ const SideBar = (props) => {
                         <span className="fa fa-cog fa-lg" /> Settings
                     </NavLink>
                 </NavItem>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <NavItem>
+                    <h4>Please Log in</h4>
+                </NavItem>
+                <NavItem>
+                    <Login />
+                </NavItem>
+            </div>
+        );
+    }
+}
+
+const SideBar = (props) => {
+    return (
+        // Pass on our props
+        <Menu {...props}>
+            <Nav navbar onClick={props.toggleSideNav}>
+                <NavbarBrand className="mr-auto col-2 col-sm-2">
+                    <Avatar size={50} src="assets/images/joe_bruin.jpg" round={true} />
+                </NavbarBrand>
+                {RenderSidebar(props.isLoggedin, props.username)}
             </Nav>
         </Menu>
     );
 };
 
-export default SideBar;
+const mapStateToProps = (state) => ({
+    username: state.users.username,
+    password: state.users.password,
+    isLoggedin: state.users.isLoggedIn
+});
+
+export default connect(
+    mapStateToProps,
+    {}
+)(SideBar);
