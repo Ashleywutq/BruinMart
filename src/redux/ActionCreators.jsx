@@ -33,6 +33,24 @@ export const fetchItems = () => (dispatch) => {
         .catch((error) => dispatch(itemsFailed(error.message)));
 };
 
+export const reserveItem = (key) => (dispatch) => {
+    
+    return itemsRef
+        .child('/' + key).update({reserved: true})
+        .then((error) => {
+            if (error)
+                throw error;
+            console.log('error checking');
+            dispatch(reserve(key))
+        })
+        .catch((error) => dispatch(itemsFailed(error.message)));
+}
+
+export const reserve = (key) => ({
+    type: ActionTypes.RESERVE_ITEM,
+    payload: key
+});
+
 export const addItems = (items) => ({
     type: ActionTypes.ADD_ITEMS,
     payload: items

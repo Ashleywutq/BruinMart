@@ -7,3 +7,4 @@ export const POST_ITEMS = "POST_ITEMS";
 export const LOG_IN = "LOG_IN";
 export const LOG_OUT = "LOG_OUT";
 export const ADD_ITEM_USER = 'ADD_ITEM_USER';
+export const RESERVE_ITEM = 'RESERVE_ITEM';

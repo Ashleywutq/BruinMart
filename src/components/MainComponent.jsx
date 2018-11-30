@@ -5,7 +5,7 @@ import Header from './HeaderComponent';
 import SideBar from './SideBarComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterResults, fetchItems, postItem } from '../redux/ActionCreators';
+import { filterResults, fetchItems, postItem, reserveItem } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 import '../style.css';
@@ -27,6 +27,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     resetNewPostForm: () => {
         dispatch(actions.reset('newPost'));
+    },
+    reserveItem: (key) => {
+        dispatch(reserveItem(key));
     }
 });
 
@@ -68,7 +71,7 @@ class Main extends Component {
 
     render() {
         const HomePage = () => {
-            return <Home sellItems={this.props.sellItems.sellItems} />;
+            return <Home sellItems={this.props.sellItems.sellItems} reserveItem={this.props.reserveItem} />;
         };
 
         return (
