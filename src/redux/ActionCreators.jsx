@@ -139,11 +139,12 @@ export const logout = () => {
     };
 };
 
-export const StoreUserInfo = (username, password, email, phone) => (dispatch) => {
+export const StoreUserInfo = (name, username, password, email, phone) => (dispatch) => {
     console.log(phone);
     return usersRef
         .child(username)
         .update({
+            name: name,
             password: password,
             email: email,
             tel: phone,
