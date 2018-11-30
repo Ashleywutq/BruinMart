@@ -3,13 +3,7 @@ import { Button, Label, FormText, Modal, ModalHeader, ModalBody, Col, Row } from
 import ImageUpload from './ImageUploadComponent';
 import { Control, Form, Errors } from 'react-redux-form';
 
-const options = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' }
-];
-
-class ModalExample extends React.Component {
+class NewPost extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -53,9 +47,9 @@ class ModalExample extends React.Component {
                         <Form model="newPost" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor=".itemName" md={2}>
-                                    Name
+                                    <b>Name</b>
                                 </Label>
-                                <Col md={10}>
+                                <Col md={9}>
                                     <Control.text
                                         model=".itemName"
                                         id="itemName"
@@ -82,9 +76,9 @@ class ModalExample extends React.Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor=".itemPrice" md={2}>
-                                    Price
+                                    <b>Price</b>
                                 </Label>
-                                <Col md={10}>
+                                <Col md={9}>
                                     <Control.text
                                         model=".itemPrice"
                                         id="itemPrice"
@@ -111,9 +105,9 @@ class ModalExample extends React.Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor=".itemDes" md={2}>
-                                    Item Description
+                                    <b>Item Description</b>
                                 </Label>
-                                <Col md={10}>
+                                <Col md={9}>
                                     <Control.textarea
                                         model=".itemDes"
                                         id="itemDes"
@@ -136,10 +130,10 @@ class ModalExample extends React.Component {
         </FormGroup> */}
                             <Row className="form-group">
                                 <Label htmlFor=".pictures" md={2}>
-                                    Pictures
+                                    <b>Pictures</b>
                                 </Label>
                                 {/* <Input type="file" name="file" id="exampleFile" /> */}
-                                <Col md={10}>
+                                <Col md={9}>
                                     <ImageUpload />
                                     <FormText color="muted">Upload a picture for your item here.</FormText>
                                 </Col>
@@ -168,7 +162,7 @@ class ModalExample extends React.Component {
                             <Row className="form-group">
                                 <Col>
                                     <div className="form-check">
-                                        <Label check>
+                                        <Label check md={{size: 9, offset: 2}}>
                                             <Control.checkbox
                                                 model=".agreeTerms"
                                                 name="agreeTerms"
@@ -181,12 +175,12 @@ class ModalExample extends React.Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Col md={{ size: 4, offset: 2 }}>
+                                <Col md={{ size: 3, offset: 2 }}>
                                     <Button block type="submit" value="submit" color="primary">
                                         Post
                                     </Button>
                                 </Col>
-                                <Col md={{ size: 4, offset: 2 }}>
+                                <Col md={{ size: 3, offset: 3 }}>
                                     <Button block color="secondary" onClick={this.toggleModal}>
                                         Cancel
                                     </Button>
@@ -200,4 +194,4 @@ class ModalExample extends React.Component {
     }
 }
 
-export default ModalExample;
+export default NewPost;

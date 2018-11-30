@@ -1,25 +1,5 @@
 import React, { Component } from 'react';
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavbarToggler,
-    Collapse,
-    NavItem,
-    Jumbotron,
-    Button,
-    ModalHeader,
-    Modal,
-    ModalBody,
-    Form,
-    FormGroup,
-    Input,
-    Label
-} from 'reactstrap';
-
-import Login from './LoginComponent';
-import Register from './RegisterComponent';
-import { NavLink } from 'react-router-dom';
+import { Navbar, Nav, NavbarToggler, NavItem, Jumbotron } from 'reactstrap';
 import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
 
