@@ -30,10 +30,10 @@ class NewPost extends React.Component {
             picture:
                 'https://s7d4.scene7.com/is/image/roomandboard/?layer=0&size=498,400&scl=1&src=964101_wood_W&layer=comp&$prodzoom0$',
             reserved: false,
-            seller: 'Joe Bruin',
+            seller: this.props.users.userInfo.name,
             time: new Date().toISOString(),
             detail: values.itemDes,
-            username: 'jerry'
+            username: this.props.users.username
         });
         this.toggleModal();
     }

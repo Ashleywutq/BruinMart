@@ -5,11 +5,11 @@ import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
 import { Navbar, Nav, NavbarToggler, NavItem } from 'reactstrap';
 
-function RenderButton(isLoggedIn, resetNewPostForm, postItem, fetchUserInfo, loginError) {
-    if (isLoggedIn) {
-        return <NewPostModal resetNewPostForm={resetNewPostForm} postItem={postItem} />;
+function RenderButton(resetNewPostForm, postItem, fetchUserInfo, users) {
+    if (users.isLoggedIn) {
+        return <NewPostModal resetNewPostForm={resetNewPostForm} postItem={postItem} users={users} />;
     } else {
-        return <Login fetchUserInfo={fetchUserInfo} loginError={loginError} />;
+        return <Login fetchUserInfo={fetchUserInfo} loginError={users.userInfo.loginError} />;
     }
 }
 
@@ -49,11 +49,10 @@ class Header extends Component {
                         <Nav className="col-2" navbar>
                             <NavItem>
                                 {RenderButton(
-                                    this.props.isLoggedIn,
                                     this.props.resetNewPostForm,
                                     this.props.postItem,
                                     this.props.fetchUserInfo,
-                                    this.props.loginError
+                                    this.props.users
                                 )}
                             </NavItem>
                         </Nav>

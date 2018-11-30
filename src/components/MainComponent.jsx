@@ -115,6 +115,7 @@ class Main extends Component {
                         isLoggedIn={this.props.users.isLoggedIn}
                         fetchUserInfo={this.props.fetchUserInfo}
                         loginError={this.props.loginError}
+                        users={this.props.users}
                     />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
