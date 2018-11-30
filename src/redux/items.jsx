@@ -40,8 +40,6 @@ export const sellItems = (
                     .slice(0, action.payload.maxResults)
             };
         case ActionTypes.ADD_ITEM:
-            console.log(state.sellItems);
-            console.log(state.origSellItems);
             return {
                 ...state,
                 sellItems: state.sellItems.concat(action.payload),

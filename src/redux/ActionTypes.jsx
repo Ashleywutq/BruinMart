@@ -10,3 +10,4 @@ export const SIGN_UP = 'SIGN_UP';
 export const ADD_ITEM_USER = 'ADD_ITEM_USER';
 export const RESERVE_ITEM = 'RESERVE_ITEM';
 export const GET_USER_POST = 'GET_USER_POST';
+export const LOG_IN_FAILED = 'LOG_IN_FAILED';

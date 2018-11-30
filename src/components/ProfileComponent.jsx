@@ -33,7 +33,6 @@ class Profile extends Component {
           <div className="row row-header">
             <div className="col-12 col-sm-6">
               <h1>Hello {this.props.username},</h1>
-              <p>your password is {this.props.password} </p>
             </div>
           </div>
         </div>
@@ -44,7 +43,6 @@ class Profile extends Component {
 
 const mapStateToProps = state => ({
   username: state.users.username,
-  password: state.users.password,
   isLoggedin: state.users.isLoggedIn
 });
 

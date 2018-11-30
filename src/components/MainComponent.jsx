@@ -6,7 +6,7 @@ import SideBar from './SideBarComponent';
 import PostList from './PostListComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterResults, fetchItems, postItem, reserveItem } from '../redux/ActionCreators';
+import { filterResults, fetchItems, postItem, fetchUserInfo, reserveItem } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 import '../style.css';
@@ -14,7 +14,8 @@ import '../style.css';
 const mapStateToProps = (state) => {
     return {
         sellItems: state.sellItems,
-        users: state.users
+        users: state.users,
+        loginError: state.users.error
     };
 };
 
@@ -31,6 +32,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     reserveItem: (key) => {
         dispatch(reserveItem(key));
+    },
+    resetLoginForm: () => {
+        dispatch(actions.reset('login'));
+    },
+    fetchUserInfo: (username, password, toggle) => {
+        dispatch(fetchUserInfo(username, password));
     }
 });
 
@@ -98,12 +105,14 @@ class Main extends Component {
                 />
                 <div id="page-wrapper">
                     <Header
-                        users={this.props.users}
                         filterResults={this.props.filterResults}
                         fetchItems={this.props.fetchItems}
                         toggleSideNav={this.toggleSideNav}
                         resetNewPostForm={this.props.resetNewPostForm}
                         postItem={this.props.postItem}
+                        isLoggedIn={this.props.users.isLoggedIn}
+                        fetchUserInfo={this.props.fetchUserInfo}
+                        loginError={this.props.loginError}
                     />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
