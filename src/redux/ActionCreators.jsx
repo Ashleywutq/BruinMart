@@ -29,41 +29,27 @@ export const filterResults = (searchText, maxResults = 20) => ({
 // };
 
 //  This is a thunk
-<<<<<<< HEAD
-export const fetchItems = () => (dispatch) => {
-    dispatch(itemsLoading(true));
 
-    return itemsRef
-        .once('value')
-        .then((snapshot) => {
-            var rawItems = snapshot.val();
-            console.log(rawItems);
-            if (rawItems === null) throw Error('Fetch failed.');
-            var sellItems = [];
-            for (var key in rawItems) {
-                if (rawItems.hasOwnProperty(key)) {
-                    var item = rawItems[key];
-                    item.id = key;
-                    sellItems.push(item);
-                }
-            }
-            dispatch(addItems(sellItems));
-        })
-        .catch((error) => dispatch(itemsFailed(error.message)));
-=======
 export const fetchItems = () => dispatch => {
-  console.log(itemsRef);
   dispatch(itemsLoading(true));
 
   return itemsRef
     .once("value")
     .then(snapshot => {
-      console.log(snapshot.val());
-      if (snapshot.val() === null) throw Error("Fetch failed.");
-      dispatch(addItems(snapshot.val()));
+      var rawItems = snapshot.val();
+      console.log(rawItems);
+      if (rawItems === null) throw Error("Fetch failed.");
+      var sellItems = [];
+      for (var key in rawItems) {
+        if (rawItems.hasOwnProperty(key)) {
+          var item = rawItems[key];
+          item.id = key;
+          sellItems.push(item);
+        }
+      }
+      dispatch(addItems(sellItems));
     })
     .catch(error => dispatch(itemsFailed(error.message)));
->>>>>>> add login action and reducer
 };
 
 export const addItems = items => ({
@@ -80,21 +66,19 @@ export const itemsFailed = err => ({
   payload: err
 });
 
-<<<<<<< HEAD
-export const addItem = (item) => ({
-    type: ActionTypes.ADD_ITEM,
-    payload: item
+export const addItem = item => ({
+  type: ActionTypes.ADD_ITEM,
+  payload: item
 });
 
-export const postItem = (item) => (dispatch) => {
-    return itemsRef.push(item).then(function(snapshot) {
-        item.id = snapshot.key;
-        console.log(item);
-        dispatch(addItem(item));
-    });
+export const postItem = item => dispatch => {
+  return itemsRef.push(item).then(function(snapshot) {
+    item.id = snapshot.key;
+    console.log(item);
+    dispatch(addItem(item));
+  });
 };
 
-=======
 //actions for login logout
 export const login = (username, password) => {
   return {
@@ -113,4 +97,3 @@ export const logout = () => {
 export const signup = (username, password) => {
   return dispatch => {};
 };
->>>>>>> add login action and reducer
