@@ -6,7 +6,12 @@ import SideBar from "./SideBarComponent";
 import PostList from "./PostListComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { filterResults, fetchItems, postItem } from "../redux/ActionCreators";
+import {
+  filterResults,
+  fetchItems,
+  postItem,
+  reserveItem
+} from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 
 import "../style.css";
