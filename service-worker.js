@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/BruinMart/precache-manifest.d3902247abde053026b9c27411101d21.js"
+  "/BruinMart/precache-manifest.9d3d88febf2b8c77e76ef9eb71c53cc1.js"
 );
 
 workbox.clientsClaim();
