@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "480eb3001d0cb1ba78ed",
+    "revision": "e0ddaea59bc5fa9d9867",
     "url": "/BruinMart/static/css/main.bd16b94e.chunk.css"
   },
   {
-    "revision": "480eb3001d0cb1ba78ed",
-    "url": "/BruinMart/static/js/main.480eb300.chunk.js"
+    "revision": "e0ddaea59bc5fa9d9867",
+    "url": "/BruinMart/static/js/main.e0ddaea5.chunk.js"
   },
   {
     "revision": "5656f01e8587c3bf6e4d",
@@ -28,19 +28,19 @@ self.__precacheManifest = [
     "url": "/BruinMart/static/media/fontawesome-webfont.fee66e71.woff"
   },
   {
-    "revision": "674f50d287a8c48dc19ba404d20fe713",
-    "url": "/BruinMart/static/media/fontawesome-webfont.674f50d2.eot"
-  },
-  {
     "revision": "b06871f281fee6b241d60582ae9369b9",
     "url": "/BruinMart/static/media/fontawesome-webfont.b06871f2.ttf"
+  },
+  {
+    "revision": "674f50d287a8c48dc19ba404d20fe713",
+    "url": "/BruinMart/static/media/fontawesome-webfont.674f50d2.eot"
   },
   {
     "revision": "912ec66d7572ff821749319396470bde",
     "url": "/BruinMart/static/media/fontawesome-webfont.912ec66d.svg"
   },
   {
-    "revision": "8401651330ba5fbc592eb7e1bdd3f50b",
+    "revision": "082ac6f4d9296efae725888188f7025b",
     "url": "/BruinMart/index.html"
   }
 ];
