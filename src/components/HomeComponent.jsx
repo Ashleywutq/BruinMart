@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-    Card,
-    CardImg,
-    CardText,
-    CardBody,
-    CardTitle,
-    CardDeck,
-    CardSubtitle,
-    Row,
-    Col
-} from 'reactstrap';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardDeck, CardSubtitle, Row, Col } from 'reactstrap';
 import ReserveModal from './ReserveModalComponent';
 import SaveModal from './SaveModalComponent';
 import Moment from 'react-moment';
@@ -31,12 +21,10 @@ function RenderCard({ item }) {
                         Some quick example text to build on the card title and make up the bulk of the card's content.
                     </CardText>
                     <div className="row">
-                        <div className="col-sm">
-                            <ReserveModal />
-                        </div>
-                        <div className="col-sm">
-                            <SaveModal />
-                        </div>
+                        <ReserveModal />
+                    </div>
+                    <div className="row">
+                        <SaveModal />
                     </div>
                 </CardBody>
             </Card>
@@ -53,14 +41,14 @@ function RenderCard({ item }) {
                 <CardSubtitle>
                     {item.seller}
                     <br />
-                    <Moment date={item.time} format="MMM D YYYY HH:MM"></Moment>
+                    <Moment date={item.time} format="MMM D YYYY HH:MM" />
                 </CardSubtitle>
                 <CardText>{item.detail}</CardText>
                 <Row>
-                    <Col xl={{size: 4, offset: 1}}>
+                    <Col xl={{ size: 4, offset: 1 }}>
                         <ReserveModal item={item} />
                     </Col>
-                    <Col xl={{size: 4, offset: 2}}>
+                    <Col xl={{ size: 4, offset: 2 }}>
                         <SaveModal item={item} />
                     </Col>
                 </Row>

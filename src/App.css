@@ -99,3 +99,7 @@ nav a:hover {
     border-style: dashed;
     border-radius: 5px;
 }
+
+.item-button {
+  margin: 2px;
+}
