@@ -97,7 +97,6 @@ class Login extends Component {
                                     <Button
                                         block
                                         className="item-button"
-                                        onClick={() => this.onClick()}
                                         value="submit"
                                         color="primary"
                                     >
