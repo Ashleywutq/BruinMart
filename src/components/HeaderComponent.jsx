@@ -3,8 +3,7 @@ import Login from './LoginComponent';
 import Register from './RegisterComponent';
 import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
-import { connect } from 'react-redux';
-import { Navbar, Nav, NavbarToggler, NavItem, Jumbotron } from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, NavItem } from 'reactstrap';
 
 function RenderButton(isLoggedIn, resetNewPostForm, postItem, fetchUserInfo, loginError) {
     if (isLoggedIn) {
@@ -47,7 +46,7 @@ class Header extends Component {
                                 />
                             </NavItem>
                         </Nav>
-                        <Nav navbar>
+                        <Nav className="col-2" navbar>
                             <NavItem>
                                 {RenderButton(
                                     this.props.isLoggedIn,
@@ -78,19 +77,6 @@ class Header extends Component {
                             </Nav> */}
                     </div>
                 </Navbar>
-                <Jumbotron>
-                    <div className="container">
-                        <div className="row row-header">
-                            <div className="col-12 col-sm-6">
-                                <h1>BruinMart</h1>
-                                <p>
-                                    We want to redesign the user experience for using the Facebook "Free and For Sale"
-                                    group for both buyers and sellers.{' '}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </Jumbotron>
             </>
         );
     }
