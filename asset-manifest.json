@@ -8,9 +8,9 @@
   "runtime~main.js": "/BruinMart/static/js/runtime~main.ac8e0db6.js",
   "runtime~main.js.map": "/BruinMart/static/js/runtime~main.ac8e0db6.js.map",
   "static/media/font-awesome.css": "/BruinMart/static/media/fontawesome-webfont.912ec66d.svg",
-  "static/css/main.bd16b94e.chunk.css.map": "/BruinMart/static/css/main.bd16b94e.chunk.css.map",
   "static/css/1.b0178320.chunk.css.map": "/BruinMart/static/css/1.b0178320.chunk.css.map",
+  "static/css/main.bd16b94e.chunk.css.map": "/BruinMart/static/css/main.bd16b94e.chunk.css.map",
   "index.html": "/BruinMart/index.html",
-  "precache-manifest.8f9e78c02d823fa3b7c87cb3a6c8c5eb.js": "/BruinMart/precache-manifest.8f9e78c02d823fa3b7c87cb3a6c8c5eb.js",
+  "precache-manifest.dade6ff2469d7d33294b7ff24f49500f.js": "/BruinMart/precache-manifest.dade6ff2469d7d33294b7ff24f49500f.js",
   "service-worker.js": "/BruinMart/service-worker.js"
 }
