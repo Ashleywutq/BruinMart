@@ -19,7 +19,7 @@ class Login extends React.Component {
 
         this.toggle = this.toggle.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
+        this.onClick = this.onClick.bind(this);
     }
 
     onChange(e) {
@@ -27,8 +27,7 @@ class Login extends React.Component {
         e.preventDefault();
     }
 
-    onSubmit(e) {
-        e.preventDefault();
+    onClick() {
         this.toggle();
         this.props.fetchUserInfo(this.state.username, this.state.password);
     }
@@ -77,7 +76,13 @@ class Login extends React.Component {
                                     <Register />
                                 </Col>
                                 <Col xl={{ size: 3, offset: 4 }}>
-                                    <Button block className="item-button" type="submit" value="submit" color="primary">
+                                    <Button
+                                        block
+                                        className="item-button"
+                                        onClick={() => this.onClick()}
+                                        value="submit"
+                                        color="primary"
+                                    >
                                         Login
                                     </Button>
                                 </Col>
@@ -104,5 +109,5 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps,
+    mapDispatchToProps
 )(Login);

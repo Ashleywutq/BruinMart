@@ -85,8 +85,8 @@ export const postItem = (item) => (dispatch) => {
 };
 
 export const fetchUserInfo = (username, password) => (dispatch) => {
-
-    return usersRef.child(username)
+    return usersRef
+        .child(username)
         .once('value')
         .then((snapshot) => {
             var userInfo = snapshot.val();
@@ -122,6 +122,19 @@ export const logout = () => {
     };
 };
 
+export const StoreUserInfo = (username, password, email, phone) => {
+    console.log('store');
+    return {
+        type: ActionTypes.SIGN_UP,
+        username: username,
+        password: password
+    };
+};
+
 export const signup = (username, password) => {
-    return (dispatch) => {};
+    return {
+        type: ActionTypes.SIGN_UP,
+        username: username,
+        password: password
+    };
 };

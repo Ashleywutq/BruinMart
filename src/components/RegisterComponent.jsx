@@ -1,16 +1,35 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { StoreUserInfo } from '../redux/ActionCreators';
+import { connect } from 'react-redux';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            modal: false
+            modal: false,
+            username: '',
+            password: '',
+            email: '',
+            phone: ''
         };
 
         this.toggle = this.toggle.bind(this);
+        this.onChange = this.onChange.bind(this);
+        this.onClick = this.onClick.bind(this);
+    }
+
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+        e.preventDefault();
+    }
+
+    onClick() {
+        this.toggle();
+        console.log('func');
+        this.props.StoreUserInfo(this.state.username, this.state.password, this.state.email, this.state.phone);
     }
 
     toggle() {
@@ -35,7 +54,9 @@ class Register extends React.Component {
                                     type="text"
                                     id="username"
                                     name="username"
-                                    innerRef={(input) => (this.username = input)}
+                                    onChange={this.onChange}
+                                    value={this.state.username}
+                                    //innerRef={(input) => (this.username = input)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -44,7 +65,9 @@ class Register extends React.Component {
                                     type="password"
                                     id="password"
                                     name="password"
-                                    innerRef={(input) => (this.password = input)}
+                                    onChange={this.onChange}
+                                    value={this.state.password}
+                                    //innerRef={(input) => (this.password = input)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -53,26 +76,25 @@ class Register extends React.Component {
                                     type="email"
                                     id="email"
                                     name="email"
-                                    innerRef={(input) => (this.password = input)}
+                                    onChange={this.onChange}
+                                    value={this.state.email}
+                                    //innerRef={(input) => (this.password = input)}
                                 />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="tel">Contact number</Label>
-                                <Input type="tel" id="tel" name="tel" innerRef={(input) => (this.password = input)} />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input
-                                        type="checkbox"
-                                        name="remember"
-                                        innerRef={(input) => (this.remember = input)}
-                                    />{' '}
-                                    Remember me
-                                </Label>
+                                <Input
+                                    type="tel"
+                                    id="tel"
+                                    name="tel"
+                                    //onChange={this.onChange}
+                                    //value={this.state.phone}
+                                    innerRef={(input) => (this.phone = input)}
+                                />
                             </FormGroup>
 
-                            <Button type="submit" value="submit" color="primary">
-                                <span className="fa fa-sign-in fa-lg" /> Register
+                            <Button type="submit" value="submit" onClick={() => this.onClick()} color="primary">
+                                Register
                             </Button>
                         </Form>
                     </ModalBody>
@@ -81,4 +103,14 @@ class Register extends React.Component {
         );
     }
 }
-export default Register;
+
+const mapStateToProps = (state) => ({
+    username: state.users.username,
+    password: state.users.password,
+    isLoggedin: state.users.isLoggedIn
+});
+
+export default connect(
+    mapStateToProps,
+    { StoreUserInfo }
+)(Register);

@@ -35,7 +35,15 @@ export const Users = (
                     ...state.userInfo,
                     posts: state.userInfo.posts.concat(action.payload)
                 }
-            }
+            };
+        case ActionTypes.SIGN_UP:
+            console.log('sign_up');
+            return {
+                ...state,
+                isLoggedIn: true,
+                username: action.username,
+                password: action.password
+            };
         default:
             return state;
     }
