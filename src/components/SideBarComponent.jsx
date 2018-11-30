@@ -5,13 +5,13 @@ import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import Login from './LoginComponent';
 
-function RenderSidebar(isLoggedIn, username, fetchUserInfo, loginError) {
+function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError) {
     if (isLoggedIn) {
         return (
             <div>
                 <NavItem>
                     <NavLink className="nav-link" to="/profile">
-                        <h4>{username}</h4>
+                        <h4>Hello, {name} </h4>
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -61,14 +61,15 @@ function RenderSidebar(isLoggedIn, username, fetchUserInfo, loginError) {
 }
 
 const SideBar = (props) => {
+    const avatarSrc = props.isLoggedIn ? props.users.userInfo.avatar : 'assets/images/joe_bruin.jpg';
     return (
         // Pass on our props
         <Menu {...props}>
             <Nav navbar onClick={props.toggleSideNav}>
                 <NavbarBrand className="mr-auto col-2 col-sm-2">
-                    <Avatar size={50} src="assets/images/joe_bruin.jpg" round={true} />
+                    <Avatar size={100} src={avatarSrc} round={true} />
                 </NavbarBrand>
-                {RenderSidebar(props.isLoggedIn, props.users.username, props.fetchUserInfo, props.loginError)}
+                {RenderSidebar(props.isLoggedIn, props.users.userInfo.name, props.fetchUserInfo, props.loginError)}
             </Nav>
         </Menu>
     );
