@@ -22,8 +22,8 @@ class Register extends React.Component {
     render() {
         return (
             <div>
-                <Button onClick={this.toggle} color="primary">
-                    <span className="fa fa-sign-in fa-lg" /> Register
+                <Button block className="item-button" onClick={this.toggle} color="secondary">
+                    Register
                 </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Register</ModalHeader>

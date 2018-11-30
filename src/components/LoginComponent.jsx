@@ -73,13 +73,13 @@ class Login extends React.Component {
                             </FormGroup>
 
                             <Row>
-                                <Col xl={{ size: 4, offset: 1 }}>
-                                    <Button type="submit" value="submit" color="primary">
-                                        <span className="fa fa-sign-in fa-lg" /> Login
-                                    </Button>
-                                </Col>
-                                <Col xl={{ size: 4, offset: 2 }}>
+                                <Col xl={{ size: 3, offset: 1 }}>
                                     <Register />
+                                </Col>
+                                <Col xl={{ size: 3, offset: 4 }}>
+                                    <Button block className="item-button" type="submit" value="submit" color="primary">
+                                        Login
+                                    </Button>
                                 </Col>
                             </Row>
                         </Form>
