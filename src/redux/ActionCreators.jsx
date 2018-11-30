@@ -41,8 +41,12 @@ export const reserveItem = (key) => (dispatch) => {
             if (error) throw error;
             console.log('error checking');
             dispatch(reserve(key));
+            alert("Reserved Successful!");
         })
-        .catch((error) => dispatch(itemsFailed(error.message)));
+        .catch((error) => {
+            dispatch(itemsFailed(error.message));
+            alert("Reserved failed! Error: " + error.message);
+        });
 };
 
 export const reserve = (key) => ({
@@ -80,7 +84,8 @@ export const postItem = (item) => (dispatch) => {
         dispatch(addItem(item));
         usersRef.child(item.username + '/posts/').push(item.id);
         dispatch(addItemToUser(item.id));
-    });
+        alert('Post Successful!');
+    }).catch((error) => alert('Post failed! Error: ' + error.message));
 };
 
 export const fetchUserInfo = (username, password) => (dispatch) => {

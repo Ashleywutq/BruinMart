@@ -26,8 +26,6 @@ class NewPost extends React.Component {
     }
 
     handleSubmit(values) {
-        alert('Post Successful!');
-        console.log(this.props.users);
         this.props.resetNewPostForm();
         this.props.postItem({
             name: values.itemName,

@@ -19,10 +19,6 @@ class ModalExample extends React.Component {
   }
 
   onSubmit(event) {
-    console.log('function?');
-    console.log(this.props);
-    console.log(this.props.reserveItem);
-    alert("Reserved Successful!");
     event.preventDefault();
     this.toggle();
     this.props.reserveItem(this.props.item.id);
