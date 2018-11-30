@@ -35,7 +35,6 @@ export const Users = (
                 }
             };
         case ActionTypes.SIGN_UP:
-            console.log('sign_up');
             return {
                 ...state,
                 isLoggedIn: true,

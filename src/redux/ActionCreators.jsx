@@ -34,17 +34,16 @@ export const fetchItems = () => (dispatch) => {
 };
 
 export const reserveItem = (key) => (dispatch) => {
-    
     return itemsRef
-        .child('/' + key).update({reserved: true})
+        .child('/' + key)
+        .update({ reserved: true })
         .then((error) => {
-            if (error)
-                throw error;
+            if (error) throw error;
             console.log('error checking');
-            dispatch(reserve(key))
+            dispatch(reserve(key));
         })
         .catch((error) => dispatch(itemsFailed(error.message)));
-}
+};
 
 export const reserve = (key) => ({
     type: ActionTypes.RESERVE_ITEM,
@@ -135,13 +134,20 @@ export const logout = () => {
     };
 };
 
-export const StoreUserInfo = (username, password, email, phone) => {
-    console.log('store');
-    return {
-        type: ActionTypes.SIGN_UP,
-        username: username,
-        password: password
-    };
+export const StoreUserInfo = (username, password, email, phone) => (dispatch) => {
+    console.log(phone);
+    return usersRef
+        .child(username)
+        .update({
+            password: password,
+            email: email,
+            tel: phone,
+            avatar: 'assets/images/joe_bruin.jpg',
+            posts: []
+        })
+        .then(() => {
+            dispatch(fetchUserInfo(username, password));
+        });
 };
 
 export const signup = (username, password) => {

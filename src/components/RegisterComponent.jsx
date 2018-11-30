@@ -13,7 +13,7 @@ class Register extends React.Component {
             username: '',
             password: '',
             email: '',
-            phone: ''
+            tel: ''
         };
 
         this.toggle = this.toggle.bind(this);
@@ -28,8 +28,7 @@ class Register extends React.Component {
 
     onClick() {
         this.toggle();
-        console.log('func');
-        this.props.StoreUserInfo(this.state.username, this.state.password, this.state.email, this.state.phone);
+        this.props.StoreUserInfo(this.state.username, this.state.password, this.state.email, this.state.tel);
     }
 
     toggle() {
@@ -83,14 +82,7 @@ class Register extends React.Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="tel">Contact number</Label>
-                                <Input
-                                    type="tel"
-                                    id="tel"
-                                    name="tel"
-                                    //onChange={this.onChange}
-                                    //value={this.state.phone}
-                                    innerRef={(input) => (this.phone = input)}
-                                />
+                                <Input type="tel" id="tel" name="tel" onChange={this.onChange} value={this.state.tel} />
                             </FormGroup>
 
                             <Button type="submit" value="submit" onClick={() => this.onClick()} color="primary">
