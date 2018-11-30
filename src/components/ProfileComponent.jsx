@@ -27,12 +27,16 @@ class Profile extends Component {
   }
 
   render() {
+    console.log('profile' + this.props.userInfo);
     return (
       <Jumbotron>
         <div className="container">
           <div className="row row-header">
             <div className="col-12 col-sm-6">
-              <h1>Hello {this.props.username},</h1>
+              <h1>Hello {this.props.userInfo.name},</h1>
+              <p>email: {this.props.userInfo.email}</p>
+              <p>contact number: {this.props.userInfo.tel}</p>
+
             </div>
           </div>
         </div>
@@ -41,12 +45,5 @@ class Profile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  username: state.users.username,
-  isLoggedin: state.users.isLoggedIn
-});
 
-export default connect(
-  mapStateToProps,
-  {}
-)(Profile);
+export default Profile;

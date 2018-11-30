@@ -92,6 +92,14 @@ class Main extends Component {
             );
         };
 
+        const ProfilePage = () => {
+            return (
+                <Profile
+                    userInfo={this.props.users.userInfo}
+                />
+            );
+        };
+
         return (
             <div id="App">
                 <SideBar
@@ -119,7 +127,7 @@ class Main extends Component {
                     />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <Route path="/profile" component={Profile} />
+                        <Route path="/profile" component={ProfilePage} />
                         <Route path="/posts" component={PostPage} />
                         <Redirect to="/" />
                     </Switch>
