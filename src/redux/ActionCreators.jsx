@@ -66,12 +66,35 @@ export const postItem = (item) => (dispatch) => {
     });
 };
 
+export const fetchUserInfo = (username, password) => (dispatch) => {
+
+    return usersRef.child(username)
+        .once('value')
+        .then((snapshot) => {
+            var userInfo = snapshot.val();
+            console.log(userInfo);
+            if (userInfo === null) throw Error('User does not exist.');
+            console.log(userInfo);
+            // dispatch(addItems(sellItems));
+            var posts = [];
+            for (var key in userInfo.posts) {
+                if (userInfo.posts.hasOwnProperty(key)) {
+                    posts.push(userInfo.posts[key]);
+                }
+            }
+            userInfo.posts = posts;
+            dispatch(login(username, password, userInfo));
+        })
+        .catch((error) => dispatch(itemsFailed(error.message)));
+};
+
 //actions for login logout
-export const login = (username, password) => {
+export const login = (username, password, userInfo) => {
     return {
         type: ActionTypes.LOG_IN,
         username: username,
-        password: password
+        password: password,
+        userInfo: userInfo
     };
 };
 

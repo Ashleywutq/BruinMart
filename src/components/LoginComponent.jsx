@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Col, Row, Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
-import { login } from '../redux/ActionCreators';
+import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { fetchUserInfo } from '../redux/ActionCreators';
 
 import Register from './RegisterComponent';
 
@@ -30,7 +30,7 @@ class Login extends React.Component {
     onSubmit(e) {
         e.preventDefault();
         this.toggle();
-        this.props.login(this.state.username, this.state.password);
+        this.props.fetchUserInfo(this.state.username, this.state.password);
     }
 
     toggle() {
@@ -96,7 +96,13 @@ const mapStateToProps = (state) => ({
     isLoggedin: state.users.isLoggedIn
 });
 
+const mapDispatchToProps = (dispatch) => ({
+    fetchUserInfo: (username, password) => {
+        dispatch(fetchUserInfo(username, password));
+    }
+});
+
 export default connect(
     mapStateToProps,
-    { login }
+    mapDispatchToProps,
 )(Login);
