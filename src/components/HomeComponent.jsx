@@ -10,7 +10,7 @@ function RenderCard({ item, reserveItem }) {
             <CardImg top width="100%" className="card-img-top img-fluid" src={item.picture} alt={item.name} />
             <CardBody>
                 <CardTitle className="card-title">
-                    <span> {item.name} </span>
+                    <span style={{'width': '27.3vw', 'word-wrap': 'break-word'}}> {item.name} </span>
                     <span> ${item.price}</span>
                 </CardTitle>
                 <CardSubtitle>
@@ -18,7 +18,7 @@ function RenderCard({ item, reserveItem }) {
                     <br />
                     <Moment date={item.time} format="MMM D YYYY HH:MM" />
                 </CardSubtitle>
-                <CardText>{item.detail}</CardText>
+                <CardText style={{'width': '27.3vw', 'word-wrap': 'break-word'}}>{item.detail}</CardText>
                 <Row>
                     <Col xl={{ size: 4, offset: 1 }}>
                         <ReserveModal item={item} reserveItem={reserveItem} />
@@ -44,8 +44,8 @@ function Home(props) {
     });
 
     return (
-        <div className="container start-of-home">
-            <div className="row">
+        <div className="container">
+            <div className="row start-of-home">
                 <div className="col-12">
                     <h3>Items On Sale</h3>
                     <hr />
