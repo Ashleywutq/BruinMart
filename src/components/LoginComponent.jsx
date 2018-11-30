@@ -36,7 +36,7 @@ class Login extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-
+    this.toggle();
     this.props.login(this.state.username, this.state.password);
   }
 
