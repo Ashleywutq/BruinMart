@@ -3,14 +3,13 @@ import Login from './LoginComponent';
 import Register from './RegisterComponent';
 import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
-import { connect } from 'react-redux';
-import { Navbar, Nav, NavbarToggler, NavItem, Jumbotron } from 'reactstrap';
+import { Navbar, Nav, NavbarToggler, NavItem } from 'reactstrap';
 
-function RenderButton(isLoggedin, resetNewPostForm, postItem) {
-    if (isLoggedin) {
+function RenderButton(isLoggedIn, resetNewPostForm, postItem, fetchUserInfo, loginError) {
+    if (isLoggedIn) {
         return <NewPostModal resetNewPostForm={resetNewPostForm} postItem={postItem} />;
     } else {
-        return <Login />;
+        return <Login fetchUserInfo={fetchUserInfo} loginError={loginError} />;
     }
 }
 
@@ -23,21 +22,7 @@ class Header extends Component {
         };
 
         this.toggleModal = this.toggleModal.bind(this);
-        this.handleLogin = this.handleLogin.bind(this);
         this.toggleSideNav = this.props.toggleSideNav.bind(this);
-    }
-
-    handleLogin(event) {
-        this.toggleModal();
-        alert(
-            'Username: ' +
-                this.username.value +
-                ' Password: ' +
-                this.password.value +
-                ' Remember: ' +
-                this.remember.checked
-        );
-        event.preventDefault();
     }
 
     toggleModal() {
@@ -61,9 +46,15 @@ class Header extends Component {
                                 />
                             </NavItem>
                         </Nav>
-                        <Nav navbar>
+                        <Nav className="col-2" navbar>
                             <NavItem>
-                                {RenderButton(this.props.isLoggedin, this.props.resetNewPostForm, this.props.postItem)}
+                                {RenderButton(
+                                    this.props.isLoggedIn,
+                                    this.props.resetNewPostForm,
+                                    this.props.postItem,
+                                    this.props.fetchUserInfo,
+                                    this.props.loginError
+                                )}
                             </NavItem>
                         </Nav>
 
@@ -86,31 +77,9 @@ class Header extends Component {
                             </Nav> */}
                     </div>
                 </Navbar>
-                <Jumbotron>
-                    <div className="container">
-                        <div className="row row-header">
-                            <div className="col-12 col-sm-6">
-                                <h1>BruinMart</h1>
-                                <p>
-                                    We want to redesign the user experience for using the Facebook "Free and For Sale"
-                                    group for both buyers and sellers.{' '}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </Jumbotron>
             </>
         );
     }
 }
 
-const mapStateToProps = (state) => ({
-    username: state.users.username,
-    password: state.users.password,
-    isLoggedin: state.users.isLoggedIn
-});
-
-export default connect(
-    mapStateToProps,
-    {}
-)(Header);
+export default Header;

@@ -85,15 +85,21 @@ export const postItem = (item) => (dispatch) => {
 };
 
 export const fetchUserInfo = (username, password) => (dispatch) => {
-
-    return usersRef.child(username)
+    return usersRef
+        .child(username)
         .once('value')
         .then((snapshot) => {
             var userInfo = snapshot.val();
-            console.log(userInfo);
-            if (userInfo === null) throw Error('User does not exist.');
-            console.log(userInfo);
-            // dispatch(addItems(sellItems));
+            if (userInfo === null) {
+                alert('Username does not exist.');
+                throw Error('Username does not exist.');
+            }
+
+            if (userInfo.password !== password) {
+                alert('Password is wrong!');
+                throw Error('Password is wrong!');
+            }
+
             var posts = [];
             for (var key in userInfo.posts) {
                 if (userInfo.posts.hasOwnProperty(key)) {
@@ -103,8 +109,15 @@ export const fetchUserInfo = (username, password) => (dispatch) => {
             userInfo.posts = posts;
             dispatch(login(username, password, userInfo));
         })
-        .catch((error) => dispatch(itemsFailed(error.message)));
+        .catch((error) => {
+            dispatch(loginFailed(error.message));
+        });
 };
+
+export const loginFailed = (error) => ({
+    type: ActionTypes.LOG_IN_FAILED,
+    payload: error
+});
 
 //actions for login logout
 export const login = (username, password, userInfo) => {
@@ -122,6 +135,19 @@ export const logout = () => {
     };
 };
 
+export const StoreUserInfo = (username, password, email, phone) => {
+    console.log('store');
+    return {
+        type: ActionTypes.SIGN_UP,
+        username: username,
+        password: password
+    };
+};
+
 export const signup = (username, password) => {
-    return (dispatch) => {};
+    return {
+        type: ActionTypes.SIGN_UP,
+        username: username,
+        password: password
+    };
 };

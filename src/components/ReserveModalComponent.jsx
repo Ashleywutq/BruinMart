@@ -16,6 +16,7 @@ class ModalExample extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
+    console.log(this.props.key);
   }
 
   onSubmit(event) {

@@ -1,36 +1,25 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label, Row, Col } from 'reactstrap';
-import { fetchUserInfo } from '../redux/ActionCreators';
+import { Button, ModalHeader, Modal, ModalBody, Label, Row, Col } from 'reactstrap';
+import { Control, Form, Errors } from 'react-redux-form';
 
 import Register from './RegisterComponent';
 
-class Login extends React.Component {
+const required = (val) => val && val.length;
+
+class Login extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            modal: false,
-            username: '',
-            password: ''
+            modal: false
         };
 
         this.toggle = this.toggle.bind(this);
-        this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-        e.preventDefault();
-    }
-
-    onSubmit(e) {
-        e.preventDefault();
-        this.toggle();
-        this.props.fetchUserInfo(this.state.username, this.state.password);
+    onSubmit(values) {
+        this.props.fetchUserInfo(values.username, values.password);
     }
 
     toggle() {
@@ -43,41 +32,74 @@ class Login extends React.Component {
         return (
             <div>
                 <Button style={{ background: 'transparent' }} onClick={this.toggle}>
-                    <span className="fa fa-sign-in fa-lg" /> Login
+                    <span className="fa fa-sign-in" /> Login
                 </Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Login</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.onSubmit}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input
-                                    type="text"
-                                    id="username"
-                                    name="username"
-                                    onChange={this.onChange}
-                                    value={this.state.username}
-                                    //innerRef={input => (this.username = input)}
-                                />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    onChange={this.onChange}
-                                    value={this.state.password}
-                                    //innerRef={input => (this.password = input)}
-                                />
-                            </FormGroup>
-
+                        <Form model="login" onSubmit={(values) => this.onSubmit(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor=".username" md={2}>
+                                    Username
+                                </Label>
+                                <Col md={10}>
+                                    <Control.text
+                                        model=".username"
+                                        id="username"
+                                        name="username"
+                                        placeholder="Username"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".username"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required',
+                                            error: 'Username doesn\'t exist!'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor=".password" md={2}>
+                                    Last Name
+                                </Label>
+                                <Col md={10}>
+                                    <Control.password
+                                        model=".password"
+                                        id="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".password"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
                             <Row>
                                 <Col xl={{ size: 3, offset: 1 }}>
                                     <Register />
                                 </Col>
                                 <Col xl={{ size: 3, offset: 4 }}>
-                                    <Button block className="item-button" type="submit" value="submit" color="primary">
+                                    <Button
+                                        block
+                                        className="item-button"
+                                        value="submit"
+                                        color="primary"
+                                    >
                                         Login
                                     </Button>
                                 </Col>
@@ -90,19 +112,4 @@ class Login extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    username: state.users.username,
-    password: state.users.password,
-    isLoggedin: state.users.isLoggedIn
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    fetchUserInfo: (username, password) => {
-        dispatch(fetchUserInfo(username, password));
-    }
-});
-
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(Login);
+export default Login;

@@ -4,10 +4,9 @@ import { slide as Menu } from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import Login from './LoginComponent';
-import { connect } from 'react-redux';
 
-function RenderSidebar(isLoggedin, username) {
-    if (isLoggedin) {
+function RenderSidebar(isLoggedIn, username, fetchUserInfo, loginError) {
+    if (isLoggedIn) {
         return (
             <div>
                 <NavItem>
@@ -54,7 +53,7 @@ function RenderSidebar(isLoggedin, username) {
                     <h4>Please Log in</h4>
                 </NavItem>
                 <NavItem>
-                    <Login />
+                    <Login fetchUserInfo={fetchUserInfo} loginError={loginError} />
                 </NavItem>
             </div>
         );
@@ -69,19 +68,10 @@ const SideBar = (props) => {
                 <NavbarBrand className="mr-auto col-2 col-sm-2">
                     <Avatar size={50} src="assets/images/joe_bruin.jpg" round={true} />
                 </NavbarBrand>
-                {RenderSidebar(props.isLoggedin, props.username)}
+                {RenderSidebar(props.isLoggedIn, props.users.username, props.fetchUserInfo, props.loginError)}
             </Nav>
         </Menu>
     );
 };
 
-const mapStateToProps = (state) => ({
-    username: state.users.username,
-    password: state.users.password,
-    isLoggedin: state.users.isLoggedIn
-});
-
-export default connect(
-    mapStateToProps,
-    {}
-)(SideBar);
+export default SideBar;
