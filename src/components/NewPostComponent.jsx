@@ -20,7 +20,9 @@ class NewPost extends React.Component {
         });
     }
 
+
     handleSubmit(values) {
+        alert("Post Successful!");
         this.props.resetNewPostForm();
         this.props.postItem({
             name: values.itemName,
@@ -79,7 +81,8 @@ class NewPost extends React.Component {
                                 <Label htmlFor=".itemPrice" md={2}>
                                     <b>Price</b>
                                 </Label>
-                                <Col md={9}>
+                                {/* <Col md={0.3}><span className="fa fa-dollar fa-lg" /></Col> */}
+                                <Col md={4}>
                                     <Control.text
                                         model=".itemPrice"
                                         id="itemPrice"
@@ -135,8 +138,8 @@ class NewPost extends React.Component {
                                 </Label>
                                 {/* <Input type="file" name="file" id="exampleFile" /> */}
                                 <Col md={9}>
-                                    <ImageUpload />
                                     <FormText color="muted">Upload a picture for your item here.</FormText>
+                                    <ImageUpload name="itemPic" id="itemPic" className="form-control"/>
                                 </Col>
                             </Row>
                             {/* <FormGroup tag="fieldset">

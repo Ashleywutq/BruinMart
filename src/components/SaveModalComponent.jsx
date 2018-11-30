@@ -34,7 +34,7 @@ class ModalExample extends React.Component {
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.toggle}>
-                            Do Something
+                            Confirm
                         </Button>{' '}
                         <Button color="secondary" onClick={this.toggle}>
                             Cancel

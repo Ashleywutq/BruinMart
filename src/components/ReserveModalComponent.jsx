@@ -16,13 +16,13 @@ class ModalExample extends React.Component {
     this.setState({
       modal: !this.state.modal
     });
-    console.log(this.props.key);
   }
 
   onSubmit(event) {
     console.log('function?');
     console.log(this.props);
     console.log(this.props.reserveItem);
+    alert("Reserved Successful!");
     event.preventDefault();
     this.toggle();
     this.props.reserveItem(this.props.item.id);
