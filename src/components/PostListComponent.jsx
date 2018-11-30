@@ -55,7 +55,7 @@ function RenderListItem({ item }) {
 function PostList(props) {
     if (!props.isLoggedIn) {
         return (
-            <div className="container">
+            <div className="container start-of-home">
                 <div className="col-12">
                     <h3>Please Login First</h3>
                     <hr />
@@ -64,14 +64,9 @@ function PostList(props) {
         );
     }
     const sellItems = props.sellItems.map((item) => {
-        //console.log("props.posts: " + props.posts);
-        //console.log("item.id: " + item.id);
-        //console.log(props.posts[item.id]);
         var arr = [];
         for (var key in props.posts) {
             if (props.posts.hasOwnProperty(key)) {
-                //console.log(key);
-                //console.log(props.posts[key]);
                 arr.push(props.posts[key]);
             }
         }
@@ -90,7 +85,7 @@ function PostList(props) {
     });
 
     return (
-        <div className="container">
+        <div className="container start-of-home">
             <div className="col-12">
                 <h3>My Posts</h3>
                 <hr />
