@@ -44,7 +44,7 @@ function Home(props) {
     });
 
     return (
-        <div className="container">
+        <div className="container start-of-home">
             <div className="row">
                 <div className="col-12">
                     <h3>Items On Sale</h3>
