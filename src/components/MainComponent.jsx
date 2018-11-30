@@ -102,6 +102,8 @@ class Main extends Component {
                     isOpen={this.state.isSideNavOpen}
                     onStateChange={(state) => this.handleStateChange(state)}
                     toggleSideNav={this.toggleSideNav}
+                    isLoggedIn={this.props.users.isLoggedIn}
+                    fetchUserInfo={this.props.fetchUserInfo}
                 />
                 <div id="page-wrapper">
                     <Header

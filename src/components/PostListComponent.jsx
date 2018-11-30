@@ -78,7 +78,7 @@ function PostList(props) {
         if (arr.indexOf(item.id) < 0) {
             return <div />;
         } else {
-            //console.log("sellItems: " + item.name);
+            console.log(item.id);
             return (
                 <div key={item.id} className="row align-items-start">
                     <div className="col-12 col-md m-1">
