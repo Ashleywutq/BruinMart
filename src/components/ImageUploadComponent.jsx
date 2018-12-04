@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import Dropzone from 'react-dropzone';
-import { Col, Row, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
 
 class ImageUpload extends Component {
     constructor(props) {

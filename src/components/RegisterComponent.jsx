@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
 import { Button, ModalHeader, Modal, ModalBody, Label, Col, Row } from 'reactstrap';
 import { Control, Form, Errors, actions } from 'react-redux-form';
 import { StoreUserInfo } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
 import validator from 'validator';
 import { required, doesUsernameExist } from '../shared/validators';
-import * as MessageTypes from '../shared/MessageTypes';
 
-class Register extends React.Component {
+class Register extends Component {
     constructor(props) {
         super(props);
 

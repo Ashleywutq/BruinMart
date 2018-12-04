@@ -1,13 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
+import React from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from 'react-avatar';
 import Typography from '@material-ui/core/Typography';
-import { itemsLoading } from '../redux/ActionCreators';
 
 var divStyle = {
     background: 'white',
@@ -17,7 +14,7 @@ var divStyle = {
 
 function RenderListItem({ item }) {
     var reserved = 'Not Reserved';
-    if (item.reserved == true) {
+    if (item.reserved === true) {
         reserved = 'Reserved';
     }
     var time = item.time;

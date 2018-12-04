@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Login from './LoginComponent';
-import Register from './RegisterComponent';
 import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
 import { Navbar, Nav, NavbarToggler, NavItem } from 'reactstrap';
