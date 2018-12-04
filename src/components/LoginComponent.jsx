@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button, ModalHeader, Modal, ModalBody, Label, Row, Col } from 'reactstrap';
 import { Control, Form, Errors } from 'react-redux-form';
-
 import Register from './RegisterComponent';
+import { required } from "../shared/validators";
 
-const required = (val) => val && val.length;
-
+const isLoginValid = () => true;
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -57,7 +56,8 @@ class Login extends Component {
                                         placeholder="Username"
                                         className="form-control"
                                         validators={{
-                                            required
+                                            required,
+                                            isLoginValid
                                         }}
                                     />
                                     <Errors
@@ -65,8 +65,8 @@ class Login extends Component {
                                         model=".username"
                                         show="touched"
                                         messages={{
-                                            required: 'Required',
-                                            error: "Username doesn't exist!"
+                                            required: 'Required. ',
+                                            isLoginValid: 'Username does not exist. '
                                         }}
                                     />
                                 </Col>
@@ -83,7 +83,8 @@ class Login extends Component {
                                         placeholder="Password"
                                         className="form-control"
                                         validators={{
-                                            required
+                                            required,
+                                            isLoginValid
                                         }}
                                     />
                                     <Errors
@@ -91,7 +92,8 @@ class Login extends Component {
                                         model=".password"
                                         show="touched"
                                         messages={{
-                                            required: 'Required'
+                                            required: 'Required. ',
+                                            isLoginValid: 'Password is incorrect. '
                                         }}
                                     />
                                 </Col>

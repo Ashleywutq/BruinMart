@@ -27,7 +27,6 @@ class Profile extends Component {
   }
 
   render() {
-    console.log('profile' + this.props.userInfo);
     return (
       <Jumbotron>
         <div className="container">

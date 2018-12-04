@@ -6,7 +6,9 @@ import SideBar from './SideBarComponent';
 import PostList from './PostListComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterResults, fetchItems, postItem, fetchUserInfo, reserveItem } from '../redux/ActionCreators';
+import { filterResults, fetchItems, postItem, fetchUserInfo, reserveItem, logoutUser } from '../redux/ActionCreators';
+import { checkLoginInfo } from '../shared/validators';
+import * as MessageTypes from '../shared/MessageTypes';
 import { actions } from 'react-redux-form';
 
 import '../style.css';
@@ -21,6 +23,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
     postItem: (item) => dispatch(postItem(item)),
+    logoutUser: () => {
+        dispatch(logoutUser());
+    },
     filterResults: (searchText) => {
         dispatch(filterResults(searchText));
     },
@@ -36,8 +41,35 @@ const mapDispatchToProps = (dispatch) => ({
     resetLoginForm: () => {
         dispatch(actions.reset('login'));
     },
-    fetchUserInfo: (username, password, toggle) => {
-        dispatch(fetchUserInfo(username, password));
+    fetchUserInfo: (username, password) => {
+        dispatch(actions.setPending('login.username', true));
+        dispatch(actions.setPending('login.password', true));
+
+        checkLoginInfo(username, password).then((message) => {
+            let valid = {
+                username: true,
+                password: true
+            };
+            if (message === MessageTypes.SUCCESS) {
+                dispatch(fetchUserInfo(username));
+            } else if (message === MessageTypes.USER_NOT_EXIST) {
+                valid.username = false;
+            } else if (message === MessageTypes.PASSWORD_WRONG) {
+                valid.password = false;
+            }
+            dispatch(
+                actions.setValidity('login.username', {
+                    isLoginValid: valid.username
+                })
+            );
+            dispatch(
+                actions.setValidity('login.password', {
+                    isLoginValid: valid.password
+                })
+            );
+            dispatch(actions.setPending('login.username', false));
+            dispatch(actions.setPending('login.password', false));
+        });
     }
 });
 
@@ -93,11 +125,7 @@ class Main extends Component {
         };
 
         const ProfilePage = () => {
-            return (
-                <Profile
-                    userInfo={this.props.users.userInfo}
-                />
-            );
+            return <Profile userInfo={this.props.users.userInfo} />;
         };
 
         return (
@@ -112,6 +140,7 @@ class Main extends Component {
                     toggleSideNav={this.toggleSideNav}
                     isLoggedIn={this.props.users.isLoggedIn}
                     fetchUserInfo={this.props.fetchUserInfo}
+                    logoutUser={this.props.logoutUser}
                 />
                 <div id="page-wrapper">
                     <Header

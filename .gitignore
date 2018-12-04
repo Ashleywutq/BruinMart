@@ -24,3 +24,4 @@ yarn-error.log*
 *.icloud
 public/data.json
 src/firebaseConfig.js
+src/shared/firebaseConfig.js

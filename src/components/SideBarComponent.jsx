@@ -1,11 +1,11 @@
 import React from 'react';
-import { NavbarBrand, Nav, NavItem } from 'reactstrap';
+import { NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
 import { slide as Menu } from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import Login from './LoginComponent';
 
-function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError) {
+function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) {
     if (isLoggedIn) {
         return (
             <div>
@@ -44,6 +44,11 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError) {
                         <span className="fa fa-cog fa-lg" /> Settings
                     </NavLink>
                 </NavItem>
+                <NavItem>
+                    <Button className="item-button" style={{background: 'transparent'}} onClick={logoutUser}>
+                        <span className="fa fa-sign-out fa-lg" /> Logout
+                    </Button>
+                </NavItem>
             </div>
         );
     } else {
@@ -69,7 +74,7 @@ const SideBar = (props) => {
                 <NavbarBrand className="mr-auto col-2 col-sm-2">
                     <Avatar size={100} src={avatarSrc} round={true} />
                 </NavbarBrand>
-                {RenderSidebar(props.isLoggedIn, props.users.userInfo.name, props.fetchUserInfo, props.loginError)}
+                {RenderSidebar(props.isLoggedIn, props.users.userInfo.name, props.fetchUserInfo, props.loginError, props.logoutUser)}
             </Nav>
         </Menu>
     );

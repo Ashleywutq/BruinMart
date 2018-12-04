@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { itemsRef, usersRef } from '../firebase';
+import { itemsRef, usersRef } from '../shared/firebase';
 
 export const filterResults = (searchText, maxResults = 20) => ({
     type: ActionTypes.FILTER,
@@ -18,7 +18,6 @@ export const fetchItems = () => (dispatch) => {
         .once('value')
         .then((snapshot) => {
             var rawItems = snapshot.val();
-            console.log(rawItems);
             if (rawItems === null) throw Error('Fetch failed.');
             var sellItems = [];
             for (var key in rawItems) {
@@ -41,11 +40,11 @@ export const reserveItem = (key) => (dispatch) => {
             if (error) throw error;
             console.log('error checking');
             dispatch(reserve(key));
-            alert("Reserved Successful!");
+            alert('Reserved Successful!');
         })
         .catch((error) => {
             dispatch(itemsFailed(error.message));
-            alert("Reserved failed! Error: " + error.message);
+            alert('Reserved failed! Error: ' + error.message);
         });
 };
 
@@ -79,31 +78,24 @@ export const addItemToUser = (itemKey) => ({
 });
 
 export const postItem = (item) => (dispatch) => {
-    return itemsRef.push(item).then(function(snapshot) {
-        item.id = snapshot.key;
-        dispatch(addItem(item));
-        usersRef.child(item.username + '/posts/').push(item.id);
-        dispatch(addItemToUser(item.id));
-        alert('Post Successful!');
-    }).catch((error) => alert('Post failed! Error: ' + error.message));
+    return itemsRef
+        .push(item)
+        .then(function(snapshot) {
+            item.id = snapshot.key;
+            dispatch(addItem(item));
+            usersRef.child(item.username + '/posts/').push(item.id);
+            dispatch(addItemToUser(item.id));
+            alert('Post Successful!');
+        })
+        .catch((error) => alert('Post failed! Error: ' + error.message));
 };
 
-export const fetchUserInfo = (username, password) => (dispatch) => {
+export const fetchUserInfo = (username) => (dispatch) => {
     return usersRef
         .child(username)
         .once('value')
         .then((snapshot) => {
             var userInfo = snapshot.val();
-            if (userInfo === null) {
-                alert('Username does not exist.');
-                throw Error('Username does not exist.');
-            }
-
-            if (userInfo.password !== password) {
-                alert('Password is wrong!');
-                throw Error('Password is wrong!');
-            }
-
             var posts = [];
             for (var key in userInfo.posts) {
                 if (userInfo.posts.hasOwnProperty(key)) {
@@ -111,10 +103,7 @@ export const fetchUserInfo = (username, password) => (dispatch) => {
                 }
             }
             userInfo.posts = posts;
-            dispatch(login(username, password, userInfo));
-        })
-        .catch((error) => {
-            dispatch(loginFailed(error.message));
+            dispatch(loginUser(username, userInfo));
         });
 };
 
@@ -124,23 +113,19 @@ export const loginFailed = (error) => ({
 });
 
 //actions for login logout
-export const login = (username, password, userInfo) => {
+export const loginUser = (username, userInfo) => {
     return {
         type: ActionTypes.LOG_IN,
         username: username,
-        password: password,
         userInfo: userInfo
     };
 };
 
-export const logout = () => {
-    return {
-        type: ActionTypes.LOG_OUT
-    };
-};
+export const logoutUser = () => ({
+    type: ActionTypes.LOG_OUT
+});
 
 export const StoreUserInfo = (name, username, password, email, phone) => (dispatch) => {
-    console.log(phone);
     return usersRef
         .child(username)
         .update({
@@ -152,7 +137,7 @@ export const StoreUserInfo = (name, username, password, email, phone) => (dispat
             posts: []
         })
         .then(() => {
-            dispatch(fetchUserInfo(username, password));
+            dispatch(fetchUserInfo(username));
         });
 };
 

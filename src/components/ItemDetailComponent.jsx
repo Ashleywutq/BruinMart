@@ -88,7 +88,6 @@ function RenderComments({ comments }) {
 }
 
 const ItemDetail = (props) => {
-    console.log(props);
     if (props.selectedItem == null) {
         return <div />;
     } else {

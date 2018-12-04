@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import { itemsRef } from '../firebase';
+import { itemsRef } from '../shared/firebase';
 
 export const sellItems = (
     state = {

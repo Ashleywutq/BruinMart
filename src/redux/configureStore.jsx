@@ -4,8 +4,7 @@ import { sellItems } from './items';
 import { Users } from './users';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-import { InitialPost } from './posts';
-import { InitialLogin } from './login';
+import { InitialLogin, InitialRegister, InitialPost } from './InitStates';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -14,7 +13,8 @@ export const ConfigureStore = () => {
             users: Users,
             ...createForms({
                 newPost: InitialPost,
-                login: InitialLogin
+                login: InitialLogin,
+                register: InitialRegister
             })
         }),
         applyMiddleware(thunk, logger)

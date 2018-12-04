@@ -1,35 +1,28 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
-import { Button, ModalHeader, Modal, ModalBody, Form, FormGroup, Input, Label, Col, Row } from 'reactstrap';
+import { Button, ModalHeader, Modal, ModalBody, Label, Col, Row } from 'reactstrap';
+import { Control, Form, Errors, actions } from 'react-redux-form';
 import { StoreUserInfo } from '../redux/ActionCreators';
 import { connect } from 'react-redux';
+import validator from 'validator';
+import { required, doesUsernameExist } from '../shared/validators';
+import * as MessageTypes from '../shared/MessageTypes';
 
 class Register extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            modal: false,
-            username: '',
-            password: '',
-            email: '',
-            tel: '',
-            name: ''
+            modal: false
         };
 
         this.toggle = this.toggle.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.onClick = this.onClick.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
-    onChange(e) {
-        this.setState({ [e.target.name]: e.target.value });
-        e.preventDefault();
-    }
-
-    onClick() {
+    onSubmit(values) {
         this.toggle();
-        this.props.StoreUserInfo(this.state.name, this.state.username, this.state.password, this.state.email, this.state.tel);
+        this.props.StoreUserInfo(values.name, values.username, values.password, values.email, values.tel);
     }
 
     toggle() {
@@ -47,90 +40,150 @@ class Register extends React.Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Register</ModalHeader>
                     <ModalBody>
-                        <Form onSubmit={this.handleLogin}>
-                            <FormGroup row>
+                        <Form model="register" onSubmit={(values) => this.onSubmit(values)}>
+                            {/* <Row>
+                                <Col xs={{size: 4, offset: 3}}>
+                                    <h1 className="justify-content-center align-self-center">
+                                        <strong>BruinMart</strong>
+                                    </h1>
+                                </Col>
+                            </Row> */}
+                            <Row className="form-group">
                                 <Label htmlFor="name" xs={{ size: 1, offset: 1 }}>
                                     <span className="fa fa-id-card-o fa-lg" />
                                 </Label>
                                 <Col xs={9}>
-                                    <Input
-                                        type="text"
+                                    <Control.text
+                                        model=".name"
                                         id="name"
                                         name="name"
-                                        onChange={this.onChange}
-                                        value={this.state.name}
                                         placeholder="Your Name"
-                                        //innerRef={(input) => (this.username = input)}
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".name"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. '
+                                        }}
                                     />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className="form-group">
                                 <Label htmlFor="username" xs={{ size: 1, offset: 1 }}>
                                     <span className="fa fa-user fa-lg" />
                                 </Label>
                                 <Col xs={9}>
-                                    <Input
-                                        type="text"
+                                    <Control.text
+                                        model=".username"
                                         id="username"
                                         name="username"
-                                        onChange={this.onChange}
-                                        value={this.state.username}
-                                        placeholder="Your username"
-                                        //innerRef={(input) => (this.username = input)}
+                                        placeholder="Username"
+                                        className="form-control"
+                                        asyncValidators={{
+                                            doesUsernameExist
+                                        }}
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".username"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. ',
+                                            doesUsernameExist: 'Username already exist in the database. '
+                                        }}
                                     />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className="form-group">
                                 <Label htmlFor="password" xs={{ size: 1, offset: 1 }}>
                                     <span className="fa fa-lock fa-lg" />
                                 </Label>
-
                                 <Col xs={9}>
-                                    <Input
-                                        type="password"
+                                    <Control.password
+                                        model=".password"
                                         id="password"
                                         name="password"
-                                        onChange={this.onChange}
-                                        value={this.state.password}
-                                        placeholder="Your password"
-                                        //innerRef={(input) => (this.password = input)}
+                                        placeholder="Password"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".password"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. '
+                                        }}
                                     />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className="form-group">
                                 <Label htmlFor="email" xs={{ size: 1, offset: 1 }}>
                                     <span className="fa fa-envelope-o fa-lg" />
                                 </Label>
                                 <Col xs={9}>
-                                    <Input
-                                        type="email"
+                                    <Control.text
+                                        model=".email"
                                         id="email"
                                         name="email"
-                                        onChange={this.onChange}
-                                        value={this.state.email}
-                                        placeholder="Your email"
-                                        //innerRef={(input) => (this.password = input)}
+                                        placeholder="Email"
+                                        className="form-control"
+                                        validators={{
+                                            required,
+                                            isEmail: (val) => val && validator.isEmail(val)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".email"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. ',
+                                            isEmail: "Wrong format. Email's format is ab@cd.ef"
+                                        }}
                                     />
                                 </Col>
-                            </FormGroup>
-                            <FormGroup row>
+                            </Row>
+                            <Row className="form-group">
                                 <Label htmlFor="tel" xs={{ size: 1, offset: 1 }}>
                                     <span className="fa fa-phone fa-lg" />
                                 </Label>
                                 <Col xs={9}>
-                                    <Input
-                                        type="tel"
+                                    <Control.text
+                                        model=".tel"
                                         id="tel"
                                         name="tel"
-                                        onChange={this.onChange}
-                                        value={this.state.tel}
-                                        placeholder="Your phone number"
+                                        placeholder="tel"
+                                        className="form-control"
+                                        validators={{
+                                            required,
+                                            isMobilePhone: (val) => val && validator.isMobilePhone(val)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".tel"
+                                        show="touched"
+                                        messages={{
+                                            required: 'Required. ',
+                                            isMobilePhone: "Phone number's format is wrong. Please use all numbers."
+                                        }}
                                     />
                                 </Col>
-                            </FormGroup>
+                            </Row>
                             <Row>
                                 <Col xs={{ size: 4, offset: 7 }}>
-                                    <Button block type="submit" value="submit" onClick={() => this.onClick()} color="primary">
+                                    <Button block type="submit" value="submit" color="primary">
                                         Register
                                     </Button>
                                 </Col>
@@ -143,13 +196,18 @@ class Register extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    username: state.users.username,
-    password: state.users.password,
-    isLoggedin: state.users.isLoggedIn
+const mapDispatchToProps = (dispatch) => ({
+    resetRegisterForm: () => {
+        dispatch(actions.reset('register'));
+    },
+    StoreUserInfo: (name, username, password, email, phone) => {
+        dispatch(StoreUserInfo(name, username, password, email, phone));
+    }
 });
 
 export default connect(
-    mapStateToProps,
-    { StoreUserInfo }
+    (state) => {
+        return {};
+    },
+    mapDispatchToProps
 )(Register);
