@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3c01fb3b88e446a62298",
+    "revision": "c30944fbd4048b00576d",
     "url": "/BruinMart/static/css/main.a5d704ff.chunk.css"
   },
   {
-    "revision": "3c01fb3b88e446a62298",
-    "url": "/BruinMart/static/js/main.3c01fb3b.chunk.js"
+    "revision": "c30944fbd4048b00576d",
+    "url": "/BruinMart/static/js/main.c30944fb.chunk.js"
   },
   {
     "revision": "556768261cac5be7dcae",
@@ -40,7 +40,7 @@ self.__precacheManifest = [
     "url": "/BruinMart/static/media/fontawesome-webfont.912ec66d.svg"
   },
   {
-    "revision": "b6318fe8fa50f4a0efc46a00a8eafd9f",
+    "revision": "eb24ba6fefe397460aecfb9eae4e9f89",
     "url": "/BruinMart/index.html"
   }
 ];
