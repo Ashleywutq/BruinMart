@@ -38,9 +38,6 @@ const mapDispatchToProps = (dispatch) => ({
     reserveItem: (key, name, email, tel) => {
         dispatch(reserveItem(key, name, email, tel));
     },
-    resetLoginForm: () => {
-        dispatch(actions.reset('login'));
-    },
     formatPhoneNumbers: (values, normalizer) => {
         dispatch(actions.change('register.tel', normalizer(values)));
     },
@@ -55,6 +52,7 @@ const mapDispatchToProps = (dispatch) => ({
             };
             if (message === MessageTypes.SUCCESS) {
                 dispatch(fetchUserInfo(username));
+                dispatch(actions.reset('login.password'));
             } else if (message === MessageTypes.USER_NOT_EXIST) {
                 valid.username = false;
             } else if (message === MessageTypes.PASSWORD_WRONG) {
@@ -134,9 +132,13 @@ class Main extends Component {
         };
 
         const ProfilePage = () => {
-            return <Profile userInfo={this.props.users.userInfo}
-                            StoreUserInfo={this.props.StoreUserInfo}
-                            isLoggedIn={this.props.users.isLoggedIn} />;
+            return (
+                <Profile
+                    userInfo={this.props.users.userInfo}
+                    StoreUserInfo={this.props.StoreUserInfo}
+                    isLoggedIn={this.props.users.isLoggedIn}
+                />
+            );
         };
 
         const OngoingPage = () => {
