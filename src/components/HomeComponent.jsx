@@ -6,20 +6,18 @@ import Moment from 'react-moment';
 import { setTimeout } from 'timers';
 
 function RenderReserve(users, item, reserveItem) {
-    if (users.isLoggedIn) {
-        return (
-            <ReserveModal userInfo={users.userInfo} item={item} reserveItem={reserveItem} />
-        );
+    if (!users.isLoggedIn || users.username === item.username) {
+        return <div />;
     } else {
-        return;
+        return <ReserveModal userInfo={users.userInfo} item={item} reserveItem={reserveItem} />;
     }
 }
 
-function RenderSave(isLoggedIn, item) {
-    if (isLoggedIn) {
-        return <SaveModal item={item} />;
+function RenderSave(users, item) {
+    if (!users.isLoggedIn || users.username === item.username) {
+        return <div />;
     } else {
-        return;
+        return <SaveModal item={item} />;
     }
 }
 
@@ -40,7 +38,7 @@ function RenderCard({ item, reserveItem, users }) {
                 <CardText style={{ width: '27.3vw', wordWrap: 'break-word' }}>{item.detail}</CardText>
                 <Row>
                     <Col xl={{ size: 4, offset: 1 }}>{RenderReserve(users, item, reserveItem)}</Col>
-                    <Col xl={{ size: 4, offset: 2 }}>{RenderSave(users.isLoggedIn, { item })}</Col>
+                    <Col xl={{ size: 4, offset: 2 }}>{RenderSave(users, item)}</Col>
                 </Row>
             </CardBody>
         </Card>
@@ -48,7 +46,6 @@ function RenderCard({ item, reserveItem, users }) {
 }
 
 class Home extends Component {
-
     constructor(props) {
         super(props);
 
@@ -67,11 +64,7 @@ class Home extends Component {
                 return (
                     <div key={item.id} className="row align-items-start">
                         <div className="col-12 col-md m-1">
-                            <RenderCard
-                                item={item}
-                                reserveItem={this.reserveItem}
-                                users={this.props.users}
-                            />
+                            <RenderCard item={item} reserveItem={this.reserveItem} users={this.props.users} />
                         </div>
                     </div>
                 );
