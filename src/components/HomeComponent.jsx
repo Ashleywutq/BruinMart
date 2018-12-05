@@ -46,7 +46,7 @@ function RenderCard({ item, reserveItem, isLoggedIn }) {
 
 function Home(props) {
     const sellItems = props.sellItems
-        .filter((item) => !item.reserved)
+        .filter((item) => !item.reserved.isReserved)
         .map((item) => {
             return (
                 <div key={item.id} className="row align-items-start">

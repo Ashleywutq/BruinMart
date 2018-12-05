@@ -13,7 +13,7 @@ var divStyle = {
 };
 
 function RenderListItem({ item }) {
-    var reserved = item.reserved ? 'Reserved' : 'Not Reserved';
+    var reserved = item.reserved.isReserved ? 'Reserved' : 'Not Reserved';
     var time = item.time;
     time = time.slice(0, 10);
     return (
@@ -65,7 +65,7 @@ function PostList(props) {
     }
     const filterCriterion =
         props.renderOngoing === true
-            ? (item) => item.reserved && arr.indexOf(item.id) >= 0
+            ? (item) => item.reserved.isReserved && arr.indexOf(item.id) >= 0
             : (item) => arr.indexOf(item.id) >= 0;
     const sellItems = props.sellItems.filter(filterCriterion).map((item) => {
         return (
