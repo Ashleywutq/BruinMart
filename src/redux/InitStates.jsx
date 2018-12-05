@@ -19,3 +19,8 @@ export const InitialPost = {
     agreeTerms: false
 };
 
+export const InitialProfile = {
+    email: '',
+    tel: ''
+}
+

@@ -131,7 +131,8 @@ class Main extends Component {
         };
 
         const ProfilePage = () => {
-            return <Profile userInfo={this.props.users.userInfo} />;
+            return <Profile userInfo={this.props.users.userInfo}
+                            StoreUserInfo={this.props.StoreUserInfo} />;
         };
 
         const OngoingPage = () => {

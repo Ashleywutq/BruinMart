@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 import { itemsRef, usersRef } from '../shared/firebase';
+import { actions } from 'react-redux-form';
 
 export const filterResults = (searchText, maxResults = 20) => ({
     type: ActionTypes.FILTER,
@@ -104,6 +105,8 @@ export const fetchUserInfo = (username) => (dispatch) => {
             }
             userInfo.posts = posts;
             dispatch(loginUser(username, userInfo));
+            dispatch(actions.change('profile.email', userInfo.email));
+            dispatch(actions.change('profile.tel', userInfo.tel));
         });
 };
 
