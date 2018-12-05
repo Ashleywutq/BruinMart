@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
+import { NavbarBrand, Nav, NavItem } from 'reactstrap';
 import { slide as Menu } from 'react-burger-menu';
 import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
@@ -12,6 +12,11 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) 
                 <NavItem>
                     <NavLink className="nav-link" to="/profile">
                         <h4>Hello, {name} </h4>
+                    </NavLink>
+                </NavItem>
+                <NavItem>
+                    <NavLink className="nav-link" to="/home">
+                        <span className="fa fa-home fa-lg" /> Market
                     </NavLink>
                 </NavItem>
                 <NavItem>
@@ -45,9 +50,9 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) 
                     </NavLink>
                 </NavItem>
                 <NavItem>
-                    <Button className="item-button" style={{background: 'transparent'}} onClick={logoutUser}>
+                    <NavLink className="nav-link" to="/home" onClick={logoutUser}>
                         <span className="fa fa-sign-out fa-lg" /> Logout
-                    </Button>
+                    </NavLink>
                 </NavItem>
             </div>
         );
@@ -55,10 +60,7 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) 
         return (
             <div>
                 <NavItem>
-                    <h4>Please Log in</h4>
-                </NavItem>
-                <NavItem>
-                    <Login fetchUserInfo={fetchUserInfo} loginError={loginError} />
+                    <Login fetchUserInfo={fetchUserInfo} loginError={loginError} isSideBar={true} />
                 </NavItem>
             </div>
         );
@@ -74,7 +76,13 @@ const SideBar = (props) => {
                 <NavbarBrand className="mr-auto col-2 col-sm-2">
                     <Avatar size={100} src={avatarSrc} round={true} />
                 </NavbarBrand>
-                {RenderSidebar(props.isLoggedIn, props.users.userInfo.name, props.fetchUserInfo, props.loginError, props.logoutUser)}
+                {RenderSidebar(
+                    props.isLoggedIn,
+                    props.users.userInfo.name,
+                    props.fetchUserInfo,
+                    props.loginError,
+                    props.logoutUser
+                )}
             </Nav>
         </Menu>
     );

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Button, ModalHeader, Modal, ModalBody, Label, Row, Col } from 'reactstrap';
 import { Control, Form, Errors } from 'react-redux-form';
+import { NavLink } from 'react-router-dom';
 import Register from './RegisterComponent';
-import { required } from "../shared/validators";
+import { required } from '../shared/validators';
 
 const isLoginValid = () => true;
 class Login extends Component {
@@ -28,11 +29,19 @@ class Login extends Component {
     }
 
     render() {
-        return (
-            <div className="container">
+        const button =
+            this.props.isSideBar !== undefined ? (
+                <NavLink className="nav-link" to="/home" onClick={this.toggle}>
+                    <h4>Please Login</h4>
+                </NavLink>
+            ) : (
                 <Button style={{ background: 'transparent' }} onClick={this.toggle}>
                     <span className="fa fa-sign-in fa-lg" />
                 </Button>
+            );
+        return (
+            <div className="container">
+                {button}
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Login</ModalHeader>
                     <ModalBody>
