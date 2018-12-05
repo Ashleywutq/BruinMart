@@ -33,7 +33,7 @@ function RenderCard({ item, reserveItem }) {
 }
 
 function Home(props) {
-    const sellItems = props.sellItems.map((item) => {
+    const sellItems = props.sellItems.filter((item) => !item.reserved).map((item) => {
         return (
             <div key={item.id} className="row align-items-start">
                 <div className="col-12 col-md m-1">
