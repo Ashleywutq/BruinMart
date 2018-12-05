@@ -69,7 +69,10 @@ class Profile extends Component {
     render() {
         return (
             <div className="start-of-home">
-
+            <div className="col-12">
+            <h1>Hello, {this.props.userInfo.name}</h1>
+            <hr></hr>
+            </div>
             <Form model="profile" onSubmit={(values) => this.onSubmit(values)}>
                 <Row className="form-group">
                     <Label htmlFor="name" xs={{ size: 1, offset: 1 }}>
@@ -94,21 +97,8 @@ class Profile extends Component {
                             model=".email"
                             id="email"
                             name="email"
-                            placeholder={this.props.userInfo.email}
+                            value={this.props.userInfo.email}
                             className="form-control"
-                            validators={{
-                                required,
-                                isEmail: (val) => val && validator.isEmail(val)
-                            }}
-                        />
-                        <Errors
-                            className="text-danger"
-                            model=".email"
-                            show="touched"
-                            messages={{
-                                required: 'Required. ',
-                                isEmail: "Wrong format. Email's format is ab@cd.ef"
-                            }}
                         />
                     </Col>
                 </Row>
@@ -121,21 +111,8 @@ class Profile extends Component {
                             model=".tel"
                             id="tel"
                             name="tel"
-                            placeholder={this.props.userInfo.tel}
+                            value={this.props.userInfo.tel}
                             className="form-control"
-                            validators={{
-                                required,
-                                isMobilePhone: (val) => val && validator.isMobilePhone(val)
-                            }}
-                        />
-                        <Errors
-                            className="text-danger"
-                            model=".tel"
-                            show="touched"
-                            messages={{
-                                required: 'Required. ',
-                                isMobilePhone: "Phone number's format is wrong. Please use all numbers."
-                            }}
                         />
                     </Col>
                 </Row>
