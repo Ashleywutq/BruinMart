@@ -111,7 +111,13 @@ class Main extends Component {
 
     render() {
         const HomePage = () => {
-            return <Home sellItems={this.props.sellItems.sellItems} reserveItem={this.props.reserveItem} />;
+            return (
+                <Home
+                    sellItems={this.props.sellItems.sellItems}
+                    reserveItem={this.props.reserveItem}
+                    isLoggedIn={this.props.users.isLoggedIn}
+                />
+            );
         };
 
         const PostPage = () => {
