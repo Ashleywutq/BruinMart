@@ -1,16 +1,16 @@
 {
   "main.css": "/BruinMart/static/css/main.a5d704ff.chunk.css",
-  "main.js": "/BruinMart/static/js/main.d91e6581.chunk.js",
-  "main.js.map": "/BruinMart/static/js/main.d91e6581.chunk.js.map",
+  "main.js": "/BruinMart/static/js/main.518ff293.chunk.js",
+  "main.js.map": "/BruinMart/static/js/main.518ff293.chunk.js.map",
   "static/css/1.ec1cc808.chunk.css": "/BruinMart/static/css/1.ec1cc808.chunk.css",
   "static/js/1.55676826.chunk.js": "/BruinMart/static/js/1.55676826.chunk.js",
   "static/js/1.55676826.chunk.js.map": "/BruinMart/static/js/1.55676826.chunk.js.map",
   "runtime~main.js": "/BruinMart/static/js/runtime~main.ac8e0db6.js",
   "runtime~main.js.map": "/BruinMart/static/js/runtime~main.ac8e0db6.js.map",
   "static/media/font-awesome.css": "/BruinMart/static/media/fontawesome-webfont.912ec66d.svg",
-  "static/css/main.a5d704ff.chunk.css.map": "/BruinMart/static/css/main.a5d704ff.chunk.css.map",
   "static/css/1.ec1cc808.chunk.css.map": "/BruinMart/static/css/1.ec1cc808.chunk.css.map",
+  "static/css/main.a5d704ff.chunk.css.map": "/BruinMart/static/css/main.a5d704ff.chunk.css.map",
   "index.html": "/BruinMart/index.html",
-  "precache-manifest.bf920f6f2e52216e1851b4de2c2b5ff3.js": "/BruinMart/precache-manifest.bf920f6f2e52216e1851b4de2c2b5ff3.js",
+  "precache-manifest.bb86259c1fdb671ce3cc5635947661af.js": "/BruinMart/precache-manifest.bb86259c1fdb671ce3cc5635947661af.js",
   "service-worker.js": "/BruinMart/service-worker.js"
 }
