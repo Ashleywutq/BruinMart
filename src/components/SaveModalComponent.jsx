@@ -27,7 +27,7 @@ class ModalExample extends React.Component {
                     <ModalHeader toggle={this.toggle}>Save Item</ModalHeader>
                     <ModalBody>
                         You are about to save the item "{this.props.item.name}" from {this.props.item.seller}.<br />
-                        You will be able to view this item under "<span className="fa fa-heart-o fa-lg" /> Saved Items"
+                        You will be able to view this item under "<span className="fa fa-heart-o fa-lg fa-fw" /> Saved Items"
                         in the sidebar.
                         <br /> <br />
                         Saving will not reserve this item for you.

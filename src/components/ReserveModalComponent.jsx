@@ -34,7 +34,7 @@ class ModalExample extends React.Component {
             You are about to reserve the item "{this.props.item.name}" from {this.props.item.seller}.<br />
             Are you sure?<br /> <br />
             You will be able to see the seller's contact information 
-            and continue with this deal under the "<span className="fa fa-exchange fa-lg" /> Ongoing" section in the sidebar.
+            and continue with this deal under the "<span className="fa fa-exchange fa-lg fa-fw" /> Ongoing" section in the sidebar.
           </ModalBody>
           <ModalFooter>
             <Button color="primary" onClick={this.onSubmit} >Confirm</Button>{' '}

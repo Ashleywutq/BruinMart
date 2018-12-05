@@ -45,7 +45,7 @@ class NewPost extends React.Component {
         return (
             <div>
                 <Button style={{ background: 'transparent' }} onClick={this.toggleModal}>
-                    <span className="fa fa-plus fa-lg" />
+                    <span className="fa fa-plus fa-lg fa-fw" />
                 </Button>
                 <Modal className="modal-lg" isOpen={this.state.modal} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>New Post</ModalHeader>
@@ -82,7 +82,7 @@ class NewPost extends React.Component {
                                 <Label htmlFor=".itemPrice" md={1}>
                                     <b>Price</b>
                                 </Label>
-                                {/* <Col md={0.3}><span className="fa fa-dollar fa-lg" /></Col> */}
+                                {/* <Col md={0.3}><span className="fa fa-dollar fa-lg fa-fw" /></Col> */}
                                 <Col md={3}>
                                     <Control.text
                                         model=".itemPrice"

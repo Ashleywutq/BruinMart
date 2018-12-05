@@ -16,42 +16,42 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) 
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/home">
-                        <span className="fa fa-home fa-lg" /> Market
+                        <span className="fa fa-home fa-lg fa-fw" /> Market
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/profile">
-                        <span className="fa fa-user fa-lg" /> My Profile
+                        <span className="fa fa-user fa-lg fa-fw" /> My Profile
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/posts">
-                        <span className="fa fa-stack-exchange fa-lg" /> My Posts
+                        <span className="fa fa-stack-exchange fa-lg fa-fw" /> My Posts
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/saved">
-                        <span className="fa fa-heart-o fa-lg" /> Saved Items
+                        <span className="fa fa-heart-o fa-lg fa-fw" /> Saved Items
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/ongoing">
-                        <span className="fa fa-exchange fa-lg" /> Ongoing
+                        <span className="fa fa-exchange fa-lg fa-fw" /> Ongoing
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/sold">
-                        <span className="fa fa-shopping-bag fa-lg" /> Sold
+                        <span className="fa fa-shopping-bag fa-lg fa-fw" /> Sold
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/settings">
-                        <span className="fa fa-cog fa-lg" /> Settings
+                        <span className="fa fa-cog fa-lg fa-fw" /> Settings
                     </NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink className="nav-link" to="/home" onClick={logoutUser}>
-                        <span className="fa fa-sign-out fa-lg" /> Logout
+                        <span className="fa fa-sign-out fa-lg fa-fw" /> Logout
                     </NavLink>
                 </NavItem>
             </div>

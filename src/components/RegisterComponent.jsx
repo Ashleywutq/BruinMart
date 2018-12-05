@@ -48,7 +48,7 @@ class Register extends Component {
                             </Row> */}
                             <Row className="form-group">
                                 <Label htmlFor="name" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-id-card-o fa-lg" />
+                                    <span className="fa fa-id-card-o fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={9}>
                                     <Control.text
@@ -73,7 +73,7 @@ class Register extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="username" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-user fa-lg" />
+                                    <span className="fa fa-user fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={9}>
                                     <Control.text
@@ -102,7 +102,7 @@ class Register extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="password" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-lock fa-lg" />
+                                    <span className="fa fa-lock fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={9}>
                                     <Control.password
@@ -127,7 +127,7 @@ class Register extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="email" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-envelope-o fa-lg" />
+                                    <span className="fa fa-envelope-o fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={9}>
                                     <Control.text
@@ -154,7 +154,7 @@ class Register extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="tel" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-phone fa-lg" />
+                                    <span className="fa fa-phone fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={9}>
                                     <Control.text

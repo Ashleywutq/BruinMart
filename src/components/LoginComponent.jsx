@@ -36,7 +36,7 @@ class Login extends Component {
                 </NavLink>
             ) : (
                 <Button style={{ background: 'transparent' }} onClick={this.toggle}>
-                    <span className="fa fa-sign-in fa-lg" />
+                    <span className="fa fa-sign-in fa-lg fa-fw" />
                 </Button>
             );
         return (
@@ -55,7 +55,7 @@ class Login extends Component {
                             </Row> */}
                             <Row className="form-group">
                                 <Label htmlFor="username" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-user fa-lg" />
+                                    <span className="fa fa-user fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={8}>
                                     <Control.text
@@ -82,7 +82,7 @@ class Login extends Component {
                             </Row>
                             <Row className="form-group">
                                 <Label htmlFor="password" xs={{ size: 1, offset: 1 }}>
-                                    <span className="fa fa-lock fa-lg" />
+                                    <span className="fa fa-lock fa-lg fa-fw" />
                                 </Label>
                                 <Col xs={8}>
                                     <Control.password

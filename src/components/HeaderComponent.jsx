@@ -59,17 +59,17 @@ class Header extends Component {
                         {/* <Nav className="md-mx-auto">
                                 <NavItem>
                                     <NavLink className="nav-link nav-buttons" to="/home">
-                                        <span className="fa fa-shopping-bag fa-lg" />
+                                        <span className="fa fa-shopping-bag fa-lg fa-fw" />
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link nav-buttons" to="/settings">
-                                        <span className="fa fa-user fa-lg" />
+                                        <span className="fa fa-user fa-lg fa-fw" />
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink className="nav-link nav-buttons" to="/newpost">
-                                        <span className="fa fa-plus-square-o fa-lg" />
+                                        <span className="fa fa-plus-square-o fa-lg fa-fw" />
                                     </NavLink>
                                 </NavItem>
                             </Nav> */}
