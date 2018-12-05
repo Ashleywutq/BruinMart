@@ -132,7 +132,8 @@ class Main extends Component {
 
         const ProfilePage = () => {
             return <Profile userInfo={this.props.users.userInfo}
-                            StoreUserInfo={this.props.StoreUserInfo} />;
+                            StoreUserInfo={this.props.StoreUserInfo}
+                            isLoggedIn={this.props.users.isLoggedIn} />;
         };
 
         const OngoingPage = () => {

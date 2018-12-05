@@ -21,6 +21,17 @@ class Profile extends Component {
     }
 
     render() {
+        if (!this.props.isLoggedIn) {
+            return (
+                <div className="container start-of-home">
+                    <div className="col-12">
+                        <h3>Please Login First</h3>
+                        <hr />
+                    </div>
+                </div>
+            );
+        }
+
         return (
             <div className="start-of-home">
                 <div className="col-12">
