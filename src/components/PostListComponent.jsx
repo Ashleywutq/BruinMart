@@ -13,10 +13,7 @@ var divStyle = {
 };
 
 function RenderListItem({ item }) {
-    var reserved = 'Not Reserved';
-    if (item.reserved === true) {
-        reserved = 'Reserved';
-    }
+    var reserved = item.reserved ? 'Reserved' : 'Not Reserved';
     var time = item.time;
     time = time.slice(0, 10);
     return (
@@ -60,30 +57,32 @@ function PostList(props) {
             </div>
         );
     }
-    const sellItems = props.sellItems.map((item) => {
-        var arr = [];
-        for (var key in props.posts) {
-            if (props.posts.hasOwnProperty(key)) {
-                arr.push(props.posts[key]);
-            }
+    var arr = [];
+    for (var key in props.posts) {
+        if (props.posts.hasOwnProperty(key)) {
+            arr.push(props.posts[key]);
         }
-        if (arr.indexOf(item.id) < 0) {
-            return <div />;
-        } else {
-            return (
-                <div key={item.id} className="row align-items-start">
-                    <div className="col-12 col-md m-1">
-                        <RenderListItem item={item} />
-                    </div>
+    }
+    const filterCriterion =
+        props.renderOngoing === true
+            ? (item) => item.reserved && arr.indexOf(item.id) >= 0
+            : (item) => arr.indexOf(item.id) >= 0;
+    const sellItems = props.sellItems.filter(filterCriterion).map((item) => {
+        return (
+            <div key={item.id} className="row align-items-start">
+                <div className="col-12 col-md m-1">
+                    <RenderListItem item={item} />
                 </div>
-            );
-        }
+            </div>
+        );
     });
+
+    const title = props.renderOngoing === true ? 'My Ongoing Posts' : 'My Posts';
 
     return (
         <div className="container start-of-home">
             <div className="col-12">
-                <h3>My Posts</h3>
+                <h3>{title}</h3>
                 <hr />
             </div>
             <div style={divStyle}>

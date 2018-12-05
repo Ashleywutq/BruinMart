@@ -128,6 +128,17 @@ class Main extends Component {
             return <Profile userInfo={this.props.users.userInfo} />;
         };
 
+        const OngoingPage = () => {
+            return (
+                <PostList
+                    sellItems={this.props.sellItems.sellItems}
+                    posts={this.props.users.userInfo.posts}
+                    isLoggedIn={this.props.users.isLoggedIn}
+                    renderOngoing={true}
+                />
+            );
+        };
+
         return (
             <div id="App">
                 <SideBar
@@ -157,6 +168,7 @@ class Main extends Component {
                     <Switch>
                         <Route exact path="/" component={HomePage} />
                         <Route path="/profile" component={ProfilePage} />
+                        <Route path="/ongoing" component={OngoingPage} />
                         <Route path="/posts" component={PostPage} />
                         <Redirect to="/" />
                     </Switch>
