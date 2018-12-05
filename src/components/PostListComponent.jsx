@@ -33,7 +33,7 @@ function RenderListItem({ item }) {
     var time = item.time;
     time = time.slice(0, 10);
     return (
-        <ListItem alignItems="flex-start" style={{ height: 200 }}>
+        <ListItem alignItems="flex-start" >
             <ListItemAvatar>
                 <Avatar alt="Remy Sharp" src={item.picture} size="150" />
             </ListItemAvatar>
