@@ -6,6 +6,21 @@ import { connect } from 'react-redux';
 import validator from 'validator';
 import { required, doesUsernameExist } from '../shared/validators';
 
+const normalizePhone = (value) => {
+    if (!value) {
+        return value;
+    }
+
+    const onlyNums = value.replace(/[^\d]/g, '');
+    if (onlyNums.length <= 3) {
+        return onlyNums;
+    }
+    if (onlyNums.length <= 7) {
+        return `(${onlyNums.slice(0, 3)}) ${onlyNums.slice(3)}`;
+    }
+    return `(${onlyNums.slice(0, 3)}) ${onlyNums.slice(3, 6)}-${onlyNums.slice(6, 10)}`;
+};
+
 class Register extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +31,10 @@ class Register extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    formatPhoneNumbers(event) {
+        this.props.formatPhoneNumbers(event.target.value, normalizePhone);
     }
 
     onSubmit(values) {
@@ -161,11 +180,14 @@ class Register extends Component {
                                         model=".tel"
                                         id="tel"
                                         name="tel"
-                                        placeholder="tel"
+                                        placeholder="Phone Number"
                                         className="form-control"
+                                        onChange={(event) => this.formatPhoneNumbers(event)}
+                                        validateOn="blur"
+                                        updateOn="blur"
                                         validators={{
                                             required,
-                                            isMobilePhone: (val) => val && validator.isMobilePhone(val)
+                                            isMobilePhone: (val) => val && validator.isMobilePhone(val, 'en-US')
                                         }}
                                     />
                                     <Errors
@@ -174,7 +196,7 @@ class Register extends Component {
                                         show="touched"
                                         messages={{
                                             required: 'Required. ',
-                                            isMobilePhone: "Phone number's format is wrong. Please use all numbers."
+                                            isMobilePhone: "Phone number's format is wrong. Please enter 10 digits."
                                         }}
                                     />
                                 </Col>

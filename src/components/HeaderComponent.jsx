@@ -4,11 +4,11 @@ import SearchComponent from './SearchComponent';
 import NewPostModal from './NewPostComponent';
 import { Navbar, Nav, NavbarToggler, NavItem } from 'reactstrap';
 
-function RenderButton(resetNewPostForm, postItem, fetchUserInfo, users) {
+function RenderButton(resetNewPostForm, postItem, fetchUserInfo, users, formatPhoneNumbers) {
     if (users.isLoggedIn) {
         return <NewPostModal resetNewPostForm={resetNewPostForm} postItem={postItem} users={users} />;
     } else {
-        return <Login fetchUserInfo={fetchUserInfo} loginError={users.userInfo.loginError} />;
+        return <Login fetchUserInfo={fetchUserInfo} loginError={users.userInfo.loginError} formatPhoneNumbers={formatPhoneNumbers} />;
     }
 }
 
@@ -51,28 +51,11 @@ class Header extends Component {
                                     this.props.resetNewPostForm,
                                     this.props.postItem,
                                     this.props.fetchUserInfo,
-                                    this.props.users
+                                    this.props.users,
+                                    this.props.formatPhoneNumbers
                                 )}
                             </NavItem>
                         </Nav>
-
-                        {/* <Nav className="md-mx-auto">
-                                <NavItem>
-                                    <NavLink className="nav-link nav-buttons" to="/home">
-                                        <span className="fa fa-shopping-bag fa-lg fa-fw" />
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link nav-buttons" to="/settings">
-                                        <span className="fa fa-user fa-lg fa-fw" />
-                                    </NavLink>
-                                </NavItem>
-                                <NavItem>
-                                    <NavLink className="nav-link nav-buttons" to="/newpost">
-                                        <span className="fa fa-plus-square-o fa-lg fa-fw" />
-                                    </NavLink>
-                                </NavItem>
-                            </Nav> */}
                     </div>
                 </Navbar>
             </>

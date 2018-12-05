@@ -109,7 +109,7 @@ class Login extends Component {
                             </Row>
                             <Row>
                                 <Col xl={{ size: 3, offset: 2 }}>
-                                    <Register />
+                                    <Register formatPhoneNumbers={this.props.formatPhoneNumbers} />
                                 </Col>
                                 <Col xl={{ size: 3, offset: 2 }}>
                                     <Button block className="item-button" value="submit" color="primary">

@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import Login from './LoginComponent';
 
-function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) {
+function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser, formatPhoneNumbers) {
     if (isLoggedIn) {
         return (
             <div>
@@ -60,7 +60,7 @@ function RenderSidebar(isLoggedIn, name, fetchUserInfo, loginError, logoutUser) 
         return (
             <div>
                 <NavItem>
-                    <Login fetchUserInfo={fetchUserInfo} loginError={loginError} isSideBar={true} />
+                    <Login fetchUserInfo={fetchUserInfo} loginError={loginError} isSideBar={true} formatPhoneNumbers={formatPhoneNumbers} />
                 </NavItem>
             </div>
         );
@@ -81,7 +81,8 @@ const SideBar = (props) => {
                     props.users.userInfo.name,
                     props.fetchUserInfo,
                     props.loginError,
-                    props.logoutUser
+                    props.logoutUser,
+                    props.formatPhoneNumbers
                 )}
             </Nav>
         </Menu>

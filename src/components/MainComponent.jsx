@@ -41,6 +41,9 @@ const mapDispatchToProps = (dispatch) => ({
     resetLoginForm: () => {
         dispatch(actions.reset('login'));
     },
+    formatPhoneNumbers: (values, normalizer) => {
+        dispatch(actions.change('register.tel', normalizer(values)));
+    },
     fetchUserInfo: (username, password) => {
         dispatch(actions.setPending('login.username', true));
         dispatch(actions.setPending('login.password', true));
@@ -160,6 +163,7 @@ class Main extends Component {
                     isLoggedIn={this.props.users.isLoggedIn}
                     fetchUserInfo={this.props.fetchUserInfo}
                     logoutUser={this.props.logoutUser}
+                    formatPhoneNumbers={this.props.formatPhoneNumbers}
                 />
                 <div id="page-wrapper">
                     <Header
@@ -172,6 +176,7 @@ class Main extends Component {
                         fetchUserInfo={this.props.fetchUserInfo}
                         loginError={this.props.loginError}
                         users={this.props.users}
+                        formatPhoneNumbers={this.props.formatPhoneNumbers}
                     />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
