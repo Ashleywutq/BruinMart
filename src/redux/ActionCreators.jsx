@@ -33,15 +33,21 @@ export const fetchItems = () => (dispatch) => {
         .catch((error) => dispatch(itemsFailed(error.message)));
 };
 
-export const reserveItem = (key) => (dispatch) => {
+export const reserveItem = (key, name, email, tel) => (dispatch) => {
+    const reserved = {
+        isReserved: true,
+        name,
+        email,
+        tel
+    };
     return itemsRef
         .child('/' + key)
-        .update({ reserved: true })
+        .update({
+            reserved
+        })
         .then((error) => {
             if (error) throw error;
-            console.log('error checking');
-            dispatch(reserve(key));
-            alert('Reserved Successful!');
+            dispatch(reserve(key, reserved));
         })
         .catch((error) => {
             dispatch(itemsFailed(error.message));
@@ -49,9 +55,12 @@ export const reserveItem = (key) => (dispatch) => {
         });
 };
 
-export const reserve = (key) => ({
+export const reserve = (key, reserved) => ({
     type: ActionTypes.RESERVE_ITEM,
-    payload: key
+    payload: {
+        key,
+        reserved
+    }
 });
 
 export const addItems = (items) => ({

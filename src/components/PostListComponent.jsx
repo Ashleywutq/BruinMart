@@ -1,10 +1,12 @@
 import React from 'react';
 import List from '@material-ui/core/List';
+import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from 'react-avatar';
 import Typography from '@material-ui/core/Typography';
+import { Col, Row } from 'reactstrap';
 
 var divStyle = {
     background: 'white',
@@ -13,7 +15,21 @@ var divStyle = {
 };
 
 function RenderListItem({ item }) {
-    var reserved = item.reserved.isReserved ? 'Reserved' : 'Not Reserved';
+    const reserved = item.reserved.isReserved ? `Reserved by ${item.reserved.name}` : 'Not Reserved';
+    const phone = item.reserved.isReserved ? (
+        <Button href={`tel:${item.reserved.tel}`}>
+            <span className="fa fa-phone fa-fw" /> {item.reserved.tel}
+        </Button>
+    ) : (
+        <div />
+    );
+    const email = item.reserved.isReserved ? (
+        <Button href={`mailto:${item.reserved.email}`} style={{'text-transform': 'none'}}>
+            <span className="fa fa-envelope-o fa-fw" /> {item.reserved.email}
+        </Button>
+    ) : (
+        <div />
+    );
     var time = item.time;
     time = time.slice(0, 10);
     return (
@@ -29,8 +45,12 @@ function RenderListItem({ item }) {
                 }
                 secondary={
                     <React.Fragment>
-                        <Typography component="span" color="textPrimary" variant="title">
-                            {reserved}
+                        <Typography component="span" color="textPrimary" variant="subtitle1">
+                            <Row>
+                                <Col xs={4}>{reserved}</Col>
+                                <Col xs={{ size: 3, offset: 1 }}>{phone}</Col>
+                                <Col xs={{ size: 3 }}>{email}</Col>
+                            </Row>
                         </Typography>
                         <Typography component="span" color="textPrimary" variant="body2">
                             {time}

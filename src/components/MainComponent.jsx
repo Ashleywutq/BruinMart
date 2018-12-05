@@ -35,8 +35,8 @@ const mapDispatchToProps = (dispatch) => ({
     resetNewPostForm: () => {
         dispatch(actions.reset('newPost'));
     },
-    reserveItem: (key) => {
-        dispatch(reserveItem(key));
+    reserveItem: (key, name, email, tel) => {
+        dispatch(reserveItem(key, name, email, tel));
     },
     resetLoginForm: () => {
         dispatch(actions.reset('login'));
@@ -115,7 +115,7 @@ class Main extends Component {
                 <Home
                     sellItems={this.props.sellItems.sellItems}
                     reserveItem={this.props.reserveItem}
-                    isLoggedIn={this.props.users.isLoggedIn}
+                    users={this.props.users}
                 />
             );
         };
