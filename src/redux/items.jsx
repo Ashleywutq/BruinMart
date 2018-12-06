@@ -10,16 +10,28 @@ export const sellItems = (
     action
 ) => {
     switch (action.type) {
-        case ActionTypes.RESERVE_ITEM:
+        case ActionTypes.RESERVE_ITEM: {
             console.log(action.payload);
             const key = action.payload.key;
-            for (var i = 0; i < state.sellItems.length; i++) {
+            for (let i = 0; i < state.sellItems.length; i++) {
                 if (state.sellItems[i]['id'] === key) {
                     state.sellItems[i]['reserved'] = action.payload.reserved;
                     break;
                 }
             }
             return state;
+        }
+        case ActionTypes.UNRESERVE_ITEM: {
+            console.log(action.payload);
+            const key = action.payload;
+            for (let i = 0; i < state.sellItems.length; i++) {
+                if (state.sellItems[i]['id'] === key) {
+                    state.sellItems[i]['reserved']['isReserved'] = false;
+                    break;
+                }
+            }
+            return state;
+        }
         case ActionTypes.FILTER:
             var searchText = action.payload.searchText;
             return {

@@ -55,6 +55,25 @@ export const reserveItem = (key, name, email, tel) => (dispatch) => {
         });
 };
 
+export const unreserveItem = (key) => (dispatch) => {
+    return itemsRef
+        .child(`/${key}/reserved/`)
+        .update({ isReserved: false })
+        .then((error) => {
+            if (error) throw error;
+            console.log('error checking');
+            dispatch(unreserve(key));
+        })
+        .catch((error) => {
+            dispatch(itemsFailed(error.message));
+        });
+};
+
+export const unreserve = (key) => ({
+    type: ActionTypes.UNRESERVE_ITEM,
+    payload: key
+});
+
 export const reserve = (key, reserved) => ({
     type: ActionTypes.RESERVE_ITEM,
     payload: {

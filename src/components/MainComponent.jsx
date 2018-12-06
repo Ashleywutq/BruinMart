@@ -6,7 +6,15 @@ import SideBar from './SideBarComponent';
 import PostList from './PostListComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { filterResults, fetchItems, postItem, fetchUserInfo, reserveItem, logoutUser } from '../redux/ActionCreators';
+import {
+    filterResults,
+    fetchItems,
+    postItem,
+    fetchUserInfo,
+    reserveItem,
+    logoutUser,
+    unreserveItem
+} from '../redux/ActionCreators';
 import { checkLoginInfo } from '../shared/validators';
 import * as MessageTypes from '../shared/MessageTypes';
 import { actions } from 'react-redux-form';
@@ -37,6 +45,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     reserveItem: (key, name, email, tel) => {
         dispatch(reserveItem(key, name, email, tel));
+    },
+    unreserveItem: (key) => {
+        dispatch(unreserveItem(key));
     },
     formatPhoneNumbers: (values, normalizer) => {
         dispatch(actions.change('register.tel', normalizer(values)));
@@ -127,6 +138,7 @@ class Main extends Component {
                     sellItems={this.props.sellItems.sellItems}
                     posts={this.props.users.userInfo.posts}
                     isLoggedIn={this.props.users.isLoggedIn}
+                    unreserveItem={this.props.unreserveItem}
                 />
             );
         };
