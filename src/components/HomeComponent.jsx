@@ -6,7 +6,7 @@ import Moment from 'react-moment';
 import { setTimeout } from 'timers';
 
 function RenderReserve(users, item, reserveItem) {
-    if (!users.isLoggedIn || users.username === item.username) {
+    if (!users.isLoggedIn || users.username === item.seller.username) {
         return <div />;
     } else {
         return <ReserveModal userInfo={users.userInfo} item={item} reserveItem={reserveItem} />;
@@ -14,7 +14,7 @@ function RenderReserve(users, item, reserveItem) {
 }
 
 function RenderSave(users, item) {
-    if (!users.isLoggedIn || users.username === item.username) {
+    if (!users.isLoggedIn || users.username === item.seller.username) {
         return <div />;
     } else {
         return <SaveModal item={item} />;
@@ -31,7 +31,7 @@ function RenderCard({ item, reserveItem, users }) {
                     <span> ${item.price}</span>
                 </CardTitle>
                 <CardSubtitle>
-                    {item.seller}
+                    {item.seller.name}
                     <br />
                     <Moment date={item.time} format="MMM D YYYY HH:MM" />
                 </CardSubtitle>
@@ -54,7 +54,10 @@ class Home extends Component {
 
     reserveItem(key, name, email, tel) {
         this.props.reserveItem(key, name, email, tel);
-        setTimeout(() => this.forceUpdate(), 500);
+        setTimeout(() => {
+            this.forceUpdate();
+            alert('Reservation successful!');
+        }, 500);
     }
 
     render() {

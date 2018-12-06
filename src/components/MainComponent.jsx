@@ -136,7 +136,7 @@ class Main extends Component {
             return (
                 <PostList
                     sellItems={this.props.sellItems.sellItems}
-                    posts={this.props.users.userInfo.posts}
+                    users={this.props.users}
                     isLoggedIn={this.props.users.isLoggedIn}
                     unreserveItem={this.props.unreserveItem}
                 />
@@ -157,9 +157,10 @@ class Main extends Component {
             return (
                 <PostList
                     sellItems={this.props.sellItems.sellItems}
-                    posts={this.props.users.userInfo.posts}
+                    users={this.props.users}
                     isLoggedIn={this.props.users.isLoggedIn}
                     renderOngoing={true}
+                    unreserveItem={this.props.unreserveItem}
                 />
             );
         };

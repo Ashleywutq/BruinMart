@@ -14,18 +14,20 @@ var divStyle = {
     margin: '0px'
 };
 
-function RenderListItem({ item, unreserveItem }) {
-    const reserved = item.reserved.isReserved ? `Reserved by ${item.reserved.name}` : 'Not Reserved';
-    const phone = item.reserved.isReserved ? (
-        <Button href={`tel:${item.reserved.tel}`}>
-            <span className="fa fa-phone fa-fw" /> {item.reserved.tel}
+function RenderListItem({ item, renderOngoing, unreserveItem }) {
+    const reservedTexts = item.reserved.isReserved ? `Reserved by ${item.reserved.name}` : 'Not Reserved';
+    const phoneNum = renderOngoing ? item.seller.tel : item.reserved.tel;
+    const phoneButton = item.reserved.isReserved ? (
+        <Button href={`tel:${phoneNum}`}>
+            <span className="fa fa-phone fa-fw" /> {phoneNum}
         </Button>
     ) : (
         <div />
     );
-    const email = item.reserved.isReserved ? (
-        <Button href={`mailto:${item.reserved.email}`} style={{ 'text-transform': 'none' }}>
-            <span className="fa fa-envelope-o fa-fw" /> {item.reserved.email}
+    const email = renderOngoing ? item.seller.email : item.reserved.email;
+    const emailButton = item.reserved.isReserved ? (
+        <Button href={`mailto:${email}`} style={{ 'text-transform': 'none' }}>
+            <span className="fa fa-envelope-o fa-fw" /> {email}
         </Button>
     ) : (
         <div />
@@ -47,9 +49,9 @@ function RenderListItem({ item, unreserveItem }) {
                     <React.Fragment>
                         <Typography component="span" color="textPrimary" variant="subtitle1">
                             <Row>
-                                <Col xs={4}>{reserved}</Col>
-                                <Col xs={{ size: 3, offset: 1 }}>{phone}</Col>
-                                <Col xs={{ size: 3 }}>{email}</Col>
+                                <Col xs={4}>{renderOngoing ? `Seller: ${item.seller.name}` : reservedTexts}</Col>
+                                <Col xs={{ size: 3, offset: 1 }}>{phoneButton}</Col>
+                                <Col xs={{ size: 3 }}>{emailButton}</Col>
                             </Row>
                         </Typography>
                         <Typography component="span" color="textPrimary" variant="body2">
@@ -61,7 +63,12 @@ function RenderListItem({ item, unreserveItem }) {
                         <Row>
                             <Col xs={4}>Description: {item.detail}</Col>
                             {item.reserved.isReserved ? (
-                                <Col xs={{ size: 4, offset: 4 }}>
+                                <Col
+                                    xs={{
+                                        size: renderOngoing ? 3 : 4,
+                                        offset: renderOngoing ? 5 : 4
+                                    }}
+                                >
                                     <Button
                                         size="medium"
                                         bsStyle="primary"
@@ -70,7 +77,7 @@ function RenderListItem({ item, unreserveItem }) {
                                         color="secondary"
                                         onClick={() => unreserveItem(item.id)}
                                     >
-                                        CANCEL TRANSACTION
+                                        {renderOngoing ? 'Unreserve' : 'Cancel Transaction'}
                                     </Button>
                                 </Col>
                             ) : (
@@ -99,7 +106,7 @@ class PostList extends Component {
                     <div className="col-12 col-md m-1">
                         <RenderListItem
                             item={item}
-                            props={this.props.renderOngoing}
+                            renderOngoing={this.props.renderOngoing}
                             unreserveItem={this.unreserveItem}
                         />
                     </div>
@@ -110,7 +117,10 @@ class PostList extends Component {
 
     unreserveItem(key) {
         this.props.unreserveItem(key);
-        setTimeout(() => this.forceUpdate(), 500);
+        setTimeout(() => {
+            this.forceUpdate();
+            alert('Reservation canceled!');
+        }, 500);
     }
 
     render() {
@@ -125,9 +135,18 @@ class PostList extends Component {
             );
         }
         var arr = [];
-        for (var key in this.props.posts) {
-            if (this.props.posts.hasOwnProperty(key)) {
-                arr.push(this.props.posts[key]);
+        if (!this.props.renderOngoing) {
+            for (let key in this.props.users.userInfo.posts) {
+                if (this.props.users.userInfo.posts.hasOwnProperty(key)) {
+                    arr.push(this.props.users.userInfo.posts[key]);
+                }
+            }
+        } else {
+            for (let i = 0; i < this.props.sellItems.length; i++) {
+                let item = this.props.sellItems[i];
+                if (item.reserved.name === this.props.users.userInfo.name) {
+                    arr.push(item.id);
+                }
             }
         }
 

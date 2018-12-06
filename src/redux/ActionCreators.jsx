@@ -112,7 +112,7 @@ export const postItem = (item) => (dispatch) => {
         .then(function(snapshot) {
             item.id = snapshot.key;
             dispatch(addItem(item));
-            usersRef.child(item.username + '/posts/').push(item.id);
+            usersRef.child(item.seller.username + '/posts/').push(item.id);
             dispatch(addItemToUser(item.id));
             alert('Post Successful!');
         })

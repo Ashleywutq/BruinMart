@@ -38,7 +38,7 @@ class ReserveModal extends Component {
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                     <ModalHeader toggle={this.toggle}>Reserve Item</ModalHeader>
                     <ModalBody>
-                        You are about to reserve the item "{this.props.item.name}" from {this.props.item.seller}.<br />
+                        You are about to reserve the item "{this.props.item.name}" from {this.props.item.seller.name}.<br />
                         Are you sure?
                         <br /> <br />
                         You will be able to see the seller's contact information and continue with this deal under the "

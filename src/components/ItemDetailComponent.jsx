@@ -50,7 +50,7 @@ export const RenderItem = ({ selectedItem }) => {
                 <CardBody>
                     <CardTitle>{selectedItem.name}</CardTitle>
                     <CardSubtitle>
-                        {selectedItem.seller}
+                        {selectedItem.seller.name}
                         <br />
                         <Moment parse="MMM D YYYY HH:mm" date={selectedItem.date} />
                     </CardSubtitle>
