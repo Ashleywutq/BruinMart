@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Control } from 'react-redux-form';
 import { Form, Label, Col, Row } from 'reactstrap';
+import Avatar from 'react-avatar';
 
 class Profile extends Component {
     constructor(props) {
@@ -33,10 +34,17 @@ class Profile extends Component {
         }
 
         return (
-            <div className="start-of-home">
-                <div className="col-12">
-                    <h1>Hello, {this.props.userInfo.name}</h1>
-                    <hr />
+            <div className="container">
+                <div className="row start-of-home">
+                    <div className="col-10 justify-content-center align-self-center">
+                        <h1>Hello, {this.props.userInfo.name}</h1>
+                    </div>
+                    <div className="col-2">
+                        <Avatar size={100} src={this.props.userInfo.avatar} round={true} />
+                    </div>
+                    <div className="col-12">
+                        <hr />
+                    </div>
                 </div>
                 <Form model="profile" onSubmit={(values) => this.onSubmit(values)}>
                     <Row className="form-group">
