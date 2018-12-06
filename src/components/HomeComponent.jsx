@@ -59,6 +59,7 @@ class Home extends Component {
 
     render() {
         const sellItems = this.props.sellItems
+            .sort((a, b) => new Date(b.time) - new Date(a.time))
             .filter((item) => !item.reserved.isReserved)
             .map((item) => {
                 return (
